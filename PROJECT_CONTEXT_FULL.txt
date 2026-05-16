@@ -1,0 +1,1597 @@
+Total pages: 46
+
+========== PAGE 1 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+GoalTrack
+Goal Setting & Tracking Portal
+────────────────────────────────
+AtomQuest Hackathon 1.0
+Complete Project Planning Document
+Field Details
+Event AtomQuest Hackathon 1.0
+Conducted By Atomberg Technologies
+Problem Goal Setting & Tracking Portal
+Duration 48 Hours
+Team Size Solo
+Approach Vibe Coding (AI-assisted IDE)
+App Name GoalTrack
+Primary Color #FDB813 (Yellow) + #000000 (Black)
+GoalTrack | AtomQuest Hackathon 1.0 Page 1 of 46
+
+========== PAGE 2 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 1 — PROBLEM STATEMENT & UNDERSTANDING
+1.1 The Core Problem
+Companies today manage employee goals using spreadsheets, emails, and offline reviews.
+This creates:
+• Managers cannot see team progress in real time
+• Employees do not know how their work connects to company priorities
+• HR has to manually piece together data during appraisals
+• No accountability — things fall through the cracks
+The Solution: Replace all of that with a clean, digital, role-based web portal covering the full
+goal lifecycle — creation, approval, quarterly tracking, and reporting.
+1.2 The Three User Roles
+Role Who They Are Core Responsibility
+Employee Any staff member Creates goals, submits for approval, logs quarterly
+achievement
+Manager (L1) Direct line manager Reviews and approves/edits/returns goals, reviews
+check-ins
+Admin / HR HR team or system Controls windows, manages org hierarchy, exports
+admin reports
+1.3 Key Concepts Explained
+What is a Goal?
+A goal is something an employee wants to achieve by end of year. It has a clear target, a
+timeframe, and a measurable metric.
+Example: "Achieve Rs.40 Lakhs in regional sales revenue by 31st March 2026"
+What is a KPI?
+KPI (Key Performance Indicator) is the measuring stick for a goal. It answers: How do we know
+if you succeeded?
+Employee Role Example Goal KPI Metric UoM Type
+Sales Rep Achieve Rs.40L revenue Revenue in Rupees Numeric Min
+GoalTrack | AtomQuest Hackathon 1.0 Page 2 of 46
+
+========== PAGE 3 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+HR Manager Hire 20 new employees Number of hires Numeric Min
+Customer Support Reduce response time Avg response in hours Numeric Max
+Safety Officer Zero safety incidents Number of incidents Zero Based
+Project Manager Deliver project on time Completion date Timeline
+1.4 Unit of Measurement (UoM) Types
+UoM Type When to Use Score Formula Example
+Numeric (Min) Higher actual = better actual / target x 100 18L / 40L = 45%
+Numeric (Max) Lower actual = better target / actual x 100 (capped TAT: 5hrs target,
+100%) 3hrs actual = 100%
+Timeline Complete by a date On or before date = 100%, Delivered by March
+else 0% 31 = 100%
+Zero Based Zero occurrences = actual = 0 = 100%, else 0% 0 safety incidents =
+success 100%
+1.5 What are Shared / Departmental Goals?
+When a manager wants the whole team to share one goal, they "push" it to multiple employees
+at once.
+• Goal title and target are FIXED — employees cannot change them
+• Each employee can adjust only the WEIGHTAGE of the shared goal
+• When the primary owner updates their achievement, it automatically SYNCS to all linked
+employees
+Example: "Every sales rep must achieve Rs.40L revenue" — pushed to all 8 sales reps by the
+manager.
+1.6 Quarterly Check-in Schedule
+Period Window Opens Covers What Happens
+Goal Setting May 1 Full year Employees create & approve goals
+Q1 Check-in July 1 April – June Employee logs actual vs planned
+Q2 Check-in October 1 July – September Employee logs actual vs planned
+Q3 Check-in January 1 October – December Employee logs actual vs planned
+Q4 / Annual March 1 Full year final Final achievement capture
+GoalTrack | AtomQuest Hackathon 1.0 Page 3 of 46
+
+========== PAGE 4 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+1.7 Evaluation Criteria
+# Criteria What Judges Look For
+1 Functionality Does the full flow work without breaking?
+2 BRD Adherence Are ALL Phase 1 & Phase 2 requirements implemented correctly?
+3 User Friendliness Is the UI clean and intuitive for non-tech users?
+4 Presence of Bugs Edge cases handled? No broken flows?
+5 Good-to-Have Features Bonus features from Section 5 of BRD implemented?
+6 Cost Optimisation Infrastructure choices, API efficiency, caching, hosting cost
+GoalTrack | AtomQuest Hackathon 1.0 Page 4 of 46
+
+========== PAGE 5 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 2 — APP IDEA & HACKATHON STRATEGY
+2.1 Our App Idea
+A clean, modern, 3-role web portal for managing employee goals — from creation to
+approval to quarterly tracking — styled in black and yellow, with pre-loaded Atomberg-
+specific thrust areas and departments.
+This replaces messy spreadsheets and email chains with a structured digital system that feels
+like it was built specifically for the judges company. That is the key differentiator.
+2.2 Atomberg-Specific Customizations (Without Using Company
+Name/Logo)
+Point Customization What We Do Why It Works
+2 Pre-loaded Thrust Areas Pre-fill dropdown with real Judges recognize their own
+Atomberg department departments instantly
+categories
+3 Goal Suggestions Suggest role-specific goals Makes UX feel tailored and
+when thrust area is selected smart
+5 Color Theme Black (#000000) + Yellow Judges see their own brand
+(#FDB813) throughout colors — instant familiarity
+2.3 Pre-loaded Thrust Areas
+# Thrust Area Relevant For Example Goal
+1 Sales & Revenue Growth Sales reps, Area Achieve Rs.40L regional revenue
+Managers
+2 Product Innovation R&D Engineers Launch 3 new product features
+3 Manufacturing Excellence Plant / Production team Zero defect rate below 0.5%
+4 Marketing & Brand Building Marketing team Generate 500 qualified leads
+5 Customer Delight Support team Achieve CSAT score of 90%
+6 Supply Chain & Operations Logistics, Procurement Reduce delivery TAT to 2 days
+7 People & Culture HR team Hire 20 engineers by Q2
+8 Financial Discipline Finance team Reduce operating cost by 10%
+GoalTrack | AtomQuest Hackathon 1.0 Page 5 of 46
+
+========== PAGE 6 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+2.4 Similar Apps in the Market
+Tool What It Does Monthly Cost (1000 users)
+Lattice OKR tracking with quarterly cycles, 1:1 check- Rs.6-9 Lakhs/month
+ins, reviews
+Profit.co Comprehensive OKR platform, planning + Rs.6-9 Lakhs/month
+processes + people
+15Five Continuous performance management via Rs.5-8 Lakhs/month
+weekly check-ins
+Weekdone Hierarchical OKRs with live dashboards and Rs.4-7 Lakhs/month
+KPI monitoring
+Betterworks Goal setting, continuous feedback, team Rs.6-8 Lakhs/month
+alignment
+GoalTrack (Ours) Purpose-built, in-house, tailored to this Rs.3,750/month (production)
+company
+Key insight: 56% of organizations still use spreadsheets. Your app is a purpose-built, zero-
+cost, in-house alternative that saves Rs.5-8 Lakhs every single month.
+2.5 Hackathon Strategy — The Three Layer Approach
+Layer What Priority
+Layer 1 Core BRD — Phase 1 + Phase 2 completely and bug-free NON-NEGOTIABLE
+Layer 2 UI Polish — Black & yellow theme, loading states, empty NON-NEGOTIABLE
+states, responsive
+Layer 3 Analytics Module (bonus first), Escalation Module (bonus If time permits
+second)
+2.6 Bonus Feature Priority
+Priority Feature Why This Choice
+1st — Build this Analytics Module Visually impressive, charts visible instantly in demo,
+no external dependencies, uses only Recharts
+2nd — If time Escalation Module Practical business value, shows real thinking,
+permits harder to demo live but explainable
+Skip Azure AD SSO Complex setup, can break during demo, eats 3-4
+hours of build time
+Skip Teams Integration Requires Microsoft tenant, too risky for solo 48hr
+build
+GoalTrack | AtomQuest Hackathon 1.0 Page 6 of 46
+
+========== PAGE 7 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 3 — COMPLETE APP WORKFLOW
+3.1 Employee Journey — Step by Step
+Step 1: Goal Creation Inputs (6 Fields)
+# Field Input Type Rules / Notes
+1 Thrust Area Dropdown Required — pre-loaded with 8 Atomberg
+categories
+2 Goal Title Text (max 200 chars) Required — short descriptive title
+3 Description Textarea Required — explains the goal in detail
+4 Unit of Measure Dropdown Required — numeric_min, numeric_max,
+timeline, zero_based
+5 Target Number or Date picker Required — switches dynamically based on
+UoM selected
+6 Weightage (%) Number input Required — min 10%, all goals must total
+exactly 100%
+Step 2: Goal Validation Rules (All enforced in real time)
+• Total weightage of all goals MUST equal exactly 100% before submission
+• Each individual goal MUST have minimum 10% weightage
+• Maximum 8 goals per employee per cycle
+• Cannot submit for approval if total weightage is not 100%
+• WeightageBar updates live as employee types the weightage value
+Step 3: Quarterly Check-in Inputs
+# Field Input Type Required?
+1 Actual Achievement Number or Date (matches UoM) Yes — cannot submit
+without this
+2 Status Dropdown: Not Started / On Track / Yes
+Completed
+3 Notes Textarea No — optional context
+for manager (our
+addition)
+3.2 Manager Journey — Step by Step
+GoalTrack | AtomQuest Hackathon 1.0 Page 7 of 46
+
+========== PAGE 8 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Goal Review Actions per Goal
+• Approve as-is — goal status immediately becomes locked
+• Edit inline — change target or weightage, then approve (triggers audit log automatically)
+• Return for rework — with mandatory comment explaining why; employee can then edit
+and resubmit
+• Approve All — approves and locks all goals for that employee in one click
+Quarterly Check-in Review
+• View Planned vs Actual side by side for every goal in a table
+• See auto-computed progress score per goal (calculated by DB trigger)
+• Add structured check-in comment to document the 1:1 discussion
+• Mark entire check-in as complete — tracked for completion dashboard
+3.3 Admin Journey — Step by Step
+Cycle & Window Management
+• Create a new yearly cycle with all window dates
+• Open or close any window manually at any time
+• Only ONE cycle can be active at a time
+User Management
+• Create new users and assign role (employee / manager / admin)
+• Assign manager_id to link employees to their manager
+• Edit department and reporting structure
+Shared Goals
+• Create a departmental KPI with fixed title and target
+• Select multiple employees to push it to
+• Employees receive the goal with locked title/target — can only change weightage
+• Primary owner achievement update syncs to all linked employees automatically
+Exception Handling
+• Unlock a goal after it is locked (creates audit log entry automatically)
+• Reassign goals if someone changes teams
+Reports & Oversight
+GoalTrack | AtomQuest Hackathon 1.0 Page 8 of 46
+
+========== PAGE 9 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+• Export Achievement Report as CSV or Excel
+• View real-time Completion Dashboard — who has/has not done check-ins
+• View full Audit Trail — every post-lock change with who/what/when
+• Configure Escalation Rules — N days threshold per rule type
+3.4 Complete Bird's Eye Flow
+MAY 1 — Goal Setting Window Opens
+|
+v
+Employee creates goals (max 8, min 10% each, total = 100%)
+|
+v
+Employee submits for Manager Approval
+|
+v
+Manager reviews -> Approves / Edits / Returns
+| (if returned, employee edits and resubmits)
+v
+Goals LOCKED after full approval
+|
+v
+JULY — Q1 Check-in Window Opens
+|
+v
+Employee logs Actual Achievement + Status + Notes
+|
+v
+DB Trigger auto-calculates Progress Score
+|
+v
+Manager reviews Planned vs Actual + adds comment
+|
+v
+Repeat each quarter: October (Q2), January (Q3)
+|
+v
+MARCH — Q4 / Annual Final Check-in
+|
+v
+Admin exports Achievement Report -> Performance Review Ready
+GoalTrack | AtomQuest Hackathon 1.0 Page 9 of 46
+
+========== PAGE 10 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 4 — DATABASE DESIGN (4-STEP PROCESS)
+4.1 Step 1 — Requirement Analysis
+Entities Identified
+Entity Source in BRD Description
+USER Section 3 — User Roles All 3 roles in one table, self-referencing for org
+hierarchy
+GOAL Section 2.1 — Goal Creation Core entity — one row per goal per employee
+per cycle
+THRUST AREA Section 2.1 — Thrust Area Pre-loaded category lookup table
+field
+CYCLE Section 2.3 — Check-in Controls all window open/close dates
+Schedule
+CHECK-IN Section 2.2 — Achievement One row per goal per quarter — stores actual
+Tracking achievement
+SHARED GOAL Section 2.1 — Departmental Junction table for M:N relationship between
+KPI goals and users
+AUDIT LOG Section 4 — Reporting Every post-lock change automatically logged
+ESCALATION Section 5.3 — Escalation Triggered instances of escalation rules
+Module
+ESCALATION Section 5.3 — Escalation Admin-configured N-day thresholds per rule type
+RULE Module
+Relationships Identified (11 total)
+Relationship Entity 1 Cardinality Entity 2
+Creates User (employee) 1 to Many Goal
+Approves User (manager) 1 to Many Goal
+Belongs to Goal Many to 1 Thrust Area
+Belongs to Goal Many to 1 Cycle
+Has Goal 1 to Many Check-in
+Reviews User (manager) 1 to Many Check-in
+Shared to Goal Many to Many User (junction table needed)
+Has Goal 1 to Many Audit Log
+Makes User 1 to Many Audit Log
+GoalTrack | AtomQuest Hackathon 1.0 Page 10 of 46
+
+========== PAGE 11 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Has User 1 to Many Escalation
+Triggers Escalation Rule 1 to Many Escalation
+Business Constraints (13 Rules Extracted from BRD)
+1. Total weightage across all goals = exactly 100%
+2. Minimum weightage per goal = 10%
+3. Maximum goals per employee = 8
+4. Goals locked after manager approval — no edits without Admin
+5. Shared goals: employee can only change weightage
+6. Shared goals: title and target are read-only
+7. Achievement by primary owner syncs to all linked employees
+8. Employee can only update during open window
+9. One check-in per goal per quarter
+10. Progress score auto-calculated based on UoM type
+11. Only one active cycle at a time
+12. Admin controls all window open/close dates
+13. Every post-lock change must log who/what/when
+4.2 Step 2 — Logical Design (ER Diagram)
+ER Mapping Rules Applied:
+Rule Applied Where
+Rule 1 — Entity = Table All 9 entities become 9 tables
+Rule 2 — Attribute = Column All attributes become typed columns
+Rule 3 — PK stays PK All UUID primary keys preserved
+Rule 4 — 1:M = FK on Many side employee_id in goals, goal_id in check_ins, etc.
+Rule 5 — M:N = Junction table SHARED_GOALS table created for Goal <-> User M:N
+Rule 6 — Self-reference manager_id in USERS references users.id
+Entity-Relationship Summary Diagram
+THRUST_AREAS (1) ----< GOALS (M)
+|
+CYCLES (1) ----------< GOALS (M)
+|
+USERS/employee (1) ---< GOALS (M)
+|
+USERS/manager (1) ----< GOALS (M)
+|
+GoalTrack | AtomQuest Hackathon 1.0 Page 11 of 46
+
+========== PAGE 12 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
++-----------+----------+----------+
+| | | |
+CHECK_INS AUDIT_LOGS SHARED_GOALS |
+(1:M) (1:M) (M:N) |
+| | |
+USERS/mgr (1:M) USERS (M) |
+|
+ESCALATION_RULES (1) ----< ESCALATIONS (M)
+USERS (1) -----------< ESCALATIONS (M)
+CYCLES (1) ----------< ESCALATIONS (M)
+4.3 Step 3 — Physical Design (Supabase Optimization)
+Complete Database Schema — All 9 Tables
+Table 1: users
+Column Data Type Constraint Notes
+id UUID PRIMARY KEY Linked to Supabase
+auth.users
+name VARCHAR(100) NOT NULL
+email VARCHAR(255) NOT NULL
+UNIQUE
+role ENUM('employee','manager','admin') NOT NULL Controls access
+everywhere
+department VARCHAR(100) Atomberg department
+name
+manager_id UUID FK -> users.id Self-referencing for org
+hierarchy
+created_at TIMESTAMPTZ DEFAULT
+NOW()
+Table 2: thrust_areas
+Column Data Type Constraint Notes
+id UUID PRIMARY KEY
+name VARCHAR(100) NOT NULL Pre-seeded with 8 Atomberg
+UNIQUE areas
+description TEXT Optional longer description
+is_active BOOLEAN DEFAULT true Admin can deactivate
+GoalTrack | AtomQuest Hackathon 1.0 Page 12 of 46
+
+========== PAGE 13 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+created_at TIMESTAMPTZ DEFAULT
+NOW()
+Table 3: cycles
+Column Data Type Constraint Notes
+id UUID PRIMARY
+KEY
+name VARCHAR(100) NOT NULL e.g. 'FY 2025-26'
+goal_setting_start/end DATE NOT NULL Goal setting window
+q1_start / q1_end DATE NOT NULL Q1 window
+q2_start / q2_end DATE NOT NULL Q2 window
+q3_start / q3_end DATE NOT NULL Q3 window
+q4_start / q4_end DATE NOT NULL Q4 window
+is_active BOOLEAN DEFAULT Partial unique index — only one
+false active
+created_by UUID FK -> users.id Admin who created this cycle
+Table 4: goals
+Column Data Type Constraint Notes
+id UUID PRIMARY KEY
+employee_id UUID FK -> users.id Goal owner
+NOT NULL
+manager_id UUID FK -> users.id Approving manager
+thrust_area_id UUID FK ->
+thrust_areas.id
+cycle_id UUID FK -> cycles.id
+title VARCHAR(200) NOT NULL
+description TEXT
+uom_type ENUM(4 types) NOT NULL numeric_min/max/timeline/zero_based
+target_value DECIMAL(15,2) For numeric and zero_based
+target_date DATE For timeline goals only
+weightage DECIMAL(5,2) NOT NULL Min 10% per goal
+CHECK >= 10
+status ENUM(5 states) DEFAULT draft/submitted/approved/returned/locked
+'draft'
+GoalTrack | AtomQuest Hackathon 1.0 Page 13 of 46
+
+========== PAGE 14 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+is_shared_goal BOOLEAN DEFAULT false
+manager_comment TEXT Return reason or edit note
+created_at / TIMESTAMPTZ DEFAULT updated_at via trigger
+updated_at NOW()
+Table 5: check_ins
+Column Data Type Constraint Notes
+id UUID PRIMARY KEY
+goal_id UUID FK -> goals.id
+NOT NULL
+employee_id UUID FK -> users.id
+NOT NULL
+manager_id UUID FK -> users.id
+cycle_id UUID FK -> cycles.id
+quarter ENUM(Q1/Q2/Q3/Q4) NOT NULL
+actual_value DECIMAL(15,2) For numeric and zero_based
+actual_date DATE For timeline goals
+status ENUM(3 states) NOT NULL not_started/on_track/completed
+notes TEXT Optional employee note — our
+addition
+progress_score DECIMAL(5,2) CHECK 0-100 Auto by DB trigger — never set
+manually
+manager_comment TEXT Manager check-in comment
+manager_checked_in BOOLEAN DEFAULT false Has manager reviewed?
+created_at / TIMESTAMPTZ DEFAULT updated_at via trigger
+updated_at NOW()
+UNIQUE CONSTRAINT: (goal_id, quarter, cycle_id) — enforces one check-in per goal per
+quarter.
+Table 6: shared_goals (Junction Table — M:N)
+Column Data Type Constraint Notes
+id UUID PRIMARY KEY
+original_goal_id UUID FK -> goals.id The master/source goal
+pushed_to_user_id UUID FK -> users.id Recipient employee
+GoalTrack | AtomQuest Hackathon 1.0 Page 14 of 46
+
+========== PAGE 15 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+pushed_by_user_id UUID FK -> users.id Manager/admin who pushed
+weightage DECIMAL(5,2) NOT NULL CHECK Only field recipient can
+>= 10 change
+created_at TIMESTAMPTZ DEFAULT NOW()
+UNIQUE CONSTRAINT: (original_goal_id, pushed_to_user_id) — same goal cannot be
+pushed to same employee twice.
+Table 7: audit_logs
+Column Data Type Constraint Notes
+id UUID PRIMARY
+KEY
+goal_id UUID FK -> goals.id
+changed_by UUID FK -> users.id Who made the change
+change_type VARCHAR(100) NOT NULL e.g. 'target_changed',
+'goal_unlocked'
+old_value JSONB Flexible — stores any changed field
+as JSON
+new_value JSONB Flexible — stores new value as
+JSON
+reason TEXT Why was the change made
+created_at TIMESTAMPTZ DEFAULT Auto-created by DB trigger
+NOW()
+Table 8: escalation_rules
+Column Data Type Constraint Notes
+id UUID PRIMARY
+KEY
+type ENUM(3 types) NOT NULL goal_not_submitted/goal_not_approved/checkin_not_completed
+UNIQUE
+days_threshold SMALLINT NOT NULL N days before escalation triggers
+is_active BOOLEAN DEFAULT Admin can toggle on/off
+true
+created_by UUID FK ->
+users.id
+updated_at TIMESTAMPTZ DEFAULT Last time rule was changed
+NOW()
+GoalTrack | AtomQuest Hackathon 1.0 Page 15 of 46
+
+========== PAGE 16 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Table 9: escalations
+Column Data Type Constraint Notes
+id UUID PRIMARY KEY
+rule_id UUID FK ->
+escalation_rules.id
+triggered_for UUID FK -> users.id Who needs to take action
+triggered_against UUID FK -> users.id Who is being escalated about
+cycle_id UUID FK -> cycles.id
+type ENUM(3 types) NOT NULL Same as rule types
+quarter ENUM(Q1-Q4) NULLABLE Null for goal setting escalations
+status ENUM(3 states) DEFAULT pending/notified/resolved
+'pending'
+escalation_level SMALLINT DEFAULT 1 1=employee, 2=manager, 3=HR
+CHECK 1-3
+created_at TIMESTAMPTZ DEFAULT NOW() When triggered
+resolved_at TIMESTAMPTZ NULLABLE When resolved
+4.4 Progress Score Formulas (DB Trigger + Live Preview)
+-- DB Trigger fires on check_in INSERT or UPDATE
+IF uom_type = numeric_min THEN
+score = LEAST((actual_value / target_value) * 100, 100)
+ELSIF uom_type = numeric_max THEN
+score = LEAST((target_value / actual_value) * 100, 100)
+ELSIF uom_type = timeline THEN
+IF actual_date <= target_date THEN score = 100
+ELSE score = 0
+ELSIF uom_type = zero_based THEN
+IF actual_value = 0 THEN score = 100
+ELSE score = 0
+-- Always round to 2 decimal places
+-- Always handle division by zero gracefully
+4.5 Three Database Triggers
+GoalTrack | AtomQuest Hackathon 1.0 Page 16 of 46
+
+========== PAGE 17 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Trigger Fires When Does What
+trigger_progress_score check_ins INSERT or Auto-calculates and stores
+UPDATE progress_score based on UoM formula
+trigger_audit_log goals UPDATE (when status Auto-creates audit_log entry with
+= locked) old_value, new_value, changed_by
+trigger_updated_at goals or check_ins UPDATE Auto-updates the updated_at
+timestamp column
+4.6 Indexes for Performance
+Index Name Table.Column Speeds Up
+idx_goals_employee_id goals.employee_id Employee fetching their own goals
+idx_goals_cycle_id goals.cycle_id Fetching all goals in a cycle
+idx_goals_manager_id goals.manager_id Manager fetching team goals
+idx_checkins_goal_id check_ins.goal_id Fetching check-ins for a goal
+idx_checkins_quarter check_ins.quarter Filtering by quarter
+idx_goals_status goals.status Admin filtering by status
+idx_audit_goal_id audit_logs.goal_id Audit log lookup per goal
+idx_escalations_user escalations.triggered_for Escalation lookup per user
+idx_thrust_areas_active thrust_areas.is_active Active thrust areas dropdown
+4.7 Row Level Security (RLS) Policies
+Table Employee Policy Manager Policy Admin Policy
+users See own profile only See own profile + direct See all users
+reports
+goals See/edit own goals only See team goals (read) Full access
+check_ins See/edit own check-ins See team check-ins Full access
+(read + comment)
+audit_logs No access No access Full read access
+escalations No access No access Full access
+cycles Read active cycle Read active cycle Full CRUD
+thrust_areas Read active only Read active only Full CRUD
+4.8 Supabase Realtime Configuration
+GoalTrack | AtomQuest Hackathon 1.0 Page 17 of 46
+
+========== PAGE 18 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Table Realtime? Why
+goals YES Manager approves => employee sees status change instantly
+check_ins YES Manager adds comment => employee sees it live
+audit_logs YES Admin sees all post-lock changes in real time
+escalations YES Admin sees new escalations without refresh
+users NO Changes rarely — no realtime needed
+cycles NO Admin changes occasionally — no realtime needed
+thrust_areas NO Static data — cached forever
+GoalTrack | AtomQuest Hackathon 1.0 Page 18 of 46
+
+========== PAGE 19 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 5 — TECH STACK & ARCHITECTURE
+5.1 Final Tech Stack
+Strategy: Build fast with Supabase + Vercel for demo. Present Azure as production path in
+mandatory architecture diagram.
+Layer Technology Why This Choice
+Framework Next.js 14 (App Router) AI tools generate it cleanly, built-in routing, server
++ client components
+Styling Tailwind CSS Black & yellow theme in minutes, utility-first, no
+raw CSS
+Components shadcn/ui Beautiful pre-built components (Button, Card,
+Table, Dialog, Badge)
+Database Supabase (PostgreSQL) Free tier generous, built-in auth, realtime, visual
+dashboard
+Authentication Supabase Auth + RLS 3-role auth + row-level security in one tool
+Real-time Supabase Realtime Completion dashboard live updates, goal approval
+notifications
+Audit Trail PostgreSQL trigger + table Automatic, reliable, cannot be bypassed by
+frontend
+Excel Export SheetJS (xlsx) Mandatory BRD requirement, well-supported, AI
+knows it well
+Charts Recharts Analytics bonus feature, simple API, React-native
+Email Resend Free tier 100/day, simple API, AI generates it
+easily
+Deployment Vercel One-click Next.js deploy, free tier, instant live URL
+in 2 minutes
+Version Control GitHub Mandatory submission requirement
+5.2 Hackathon vs Production Architecture
+Layer Hackathon Stack (What We Production Stack (Architecture Diagram)
+Build)
+Framework Next.js 14 Next.js 14 (same)
+Database Supabase PostgreSQL Azure SQL Database (Indian region)
+Authentication Supabase Auth Microsoft Entra ID (Azure AD SSO)
+GoalTrack | AtomQuest Hackathon 1.0 Page 19 of 46
+
+========== PAGE 20 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Hosting Vercel Azure App Service (Indian region)
+Caching Next.js built-in cache Azure Cache for Redis
+Email/Notifications Resend Microsoft Exchange + Teams Bot
+File Storage Supabase Azure Blob Storage
+Monthly Cost Rs.0 (free tiers) ~Rs.3,750/month (~$45/month)
+vs Lattice/Profit.co - Rs.6-9 Lakhs/month saved
+5.3 Cost Optimization — Full Analysis
+Criteria Our Approach Evidence
+Infrastructure Choices Serverless on Vercel — pay per use Free tier covers demo; scales on
+demand
+API Call Efficiency Joined queries, no N+1, select only e.g. one query fetches employee +
+needed columns goals + thrust area name
+Caching — Static next: { revalidate: false } for thrust Fetched once, cached permanently
+areas until admin changes
+Caching — Semi-static next: { revalidate: 3600 } for cycle Cycle dates change rarely — 1hr
+dates cache is perfect
+Caching — Dynamic next: { revalidate: 300 } for 5min cache, fresh enough for most
+goals/check-ins users
+Caching — Real-time cache: 'no-store' for completion Realtime data must never be stale
+dashboard
+Hosting Cost $0 demo, $45/month production, Clear ROI story for judges
+Awareness $8000+/month competitor
+GoalTrack | AtomQuest Hackathon 1.0 Page 20 of 46
+
+========== PAGE 21 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 6 — UI/UX DESIGN PLAN & SCREEN LAYOUTS
+6.1 Design System
+Element Color Hex Used For
+Primary Yellow #FDB813 All primary buttons, progress bars, active
+sidebar links, accents
+Primary Hover Dark Yellow #E5A510 Button hover states
+Sidebar/Navbar Black #000000 All sidebars and top navigation bars
+Page Light Grey #F5F5F5 All page backgrounds
+Background
+Cards White #FFFFFF All content cards and panels
+Success Green #22C55E Approved status badges, 100% weightage
+indicator
+Warning Amber #F59E0B Submitted/pending badges, partial progress
+Danger Red #EF4444 Returned goals, error states, over-100%
+weightage
+Muted Dark Grey #6B7280 Locked goals, disabled states, secondary text
+Text Primary Near Black #111827 All body text
+Border Light Grey #E5E7EB All card and table borders
+6.2 Status Badge Color Reference
+Status Color Hex When Used
+Draft Grey #6B7280 Goal created but not submitted
+Submitted Yellow #FDB813 Submitted to manager, awaiting review
+Approved Green #22C55E Manager approved, goal is now locked
+Returned Red #EF4444 Manager returned — employee must rework
+Locked Dark Grey #374151 Approved and locked — no edits allowed
+Not Started Grey #6B7280 Check-in status — not yet begun
+On Track Yellow #FDB813 Check-in status — in progress
+Completed Green #22C55E Check-in status — fully done
+6.3 All 14 Screens — Detailed Layouts
+GoalTrack | AtomQuest Hackathon 1.0 Page 21 of 46
+
+========== PAGE 22 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Screen 1 — Login Page (All Roles)
++--------------------------------------------------+
+| [ GoalTrack ] (yellow text) |
+| |
+| +--------------------------------------------+ |
+| | Email Address | |
+| | [____________________________________] | |
+| | | |
+| | Password | |
+| | [____________________________________] | |
+| | | |
+| | [###### Sign In ######] (yellow btn) | |
+| | | |
+| | Error: Invalid credentials (red, if any) | |
+| +--------------------------------------------+ |
+| |
+| Note: No registration — Admin creates accounts |
++--------------------------------------------------+
+Background: #F5F5F5 | Card: White | Logo: Black bar
+Flow after login: Employee => /employee/dashboard | Manager => /manager/dashboard | Admin
+=> /admin/dashboard
+Screen 2 — Employee Dashboard
++-------------+------------------------------------------+
+| [GoalTrack] | FY 2025-26 | Q1 Check-in: OPEN | Logout|
+| (black bar) +------------------------------------------+
+| | Welcome back, Rahul S! |
+| SIDEBAR | |
+| (black bg) | +--------+ +--------+ +--------+ +------+|
+| > Dashboard | | Total | |Approved| |Pending | |Weight||
+| My Goals | | Goals | | Goals | |Approval| | 100% ||
+| Check-ins | | 5 | | 3 | | 2 | | OK ||
+| | +--------+ +--------+ +--------+ +------+|
+| | |
+| | Goals Summary |
+| | +--Title--------+--Weight-+--Status----+||
+| | | Revenue Rs40L | 30% | Approved |||
+| | | New Partners | 20% | Pending |||
+| | | Zero Incidents| 10% | Returned |||
+| | +---------------+---------+------------+||
+| | |
+| | [### + Add New Goal ###] (yellow btn) |
++-------------+------------------------------------------+
+Screen 3 — My Goals Page (Employee)
+GoalTrack | AtomQuest Hackathon 1.0 Page 22 of 46
+
+========== PAGE 23 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
++-------------+--------------------------------------------+
+| SIDEBAR | My Goals — FY 2025-26 |
+| | [### + Add Goal ###] [Submit All for Appr]|
+| | |
+| | Weightage: [#################----] 85/100% |
+| | Warning: Need 15% more to reach 100% |
+| | |
+| | +------------------------------------------+|
+| | | Achieve Rs.40L Regional Revenue ||
+| | | Thrust: Sales & Revenue Growth ||
+| | | UoM: Numeric (Min) | Target: Rs.40,00,000 ||
+| | | Weightage: 30% | Status: APPROVED (G) ||
+| | | [View] ||
+| | +------------------------------------------+|
+| | +------------------------------------------+|
+| | | Onboard 10 New Channel Partners ||
+| | | Thrust: Sales & Revenue Growth ||
+| | | UoM: Numeric (Min) | Target: 10 ||
+| | | Weightage: 20% | Status: RETURNED (R) ||
+| | | Manager Note: "Target too low, revise" ||
+| | | [Edit & Resubmit] ||
+| | +------------------------------------------+|
++-------------+--------------------------------------------+
+G=Green badge R=Red badge Y=Yellow badge
+Screen 4 — Create / Edit Goal Form (Employee)
++------------------------------------------------+
+| Create New Goal [X] Close |
++------------------------------------------------+
+| Thrust Area * |
+| [Sales & Revenue Growth v] |
+| |
+| Goal Title * |
+| [Achieve Rs.40L regional revenue ] |
+| |
+| Description |
+| [Drive sales across South Zone by... ] |
+| [onboarding new distributors... ] |
+| |
+| Unit of Measure * |
+| [Numeric (Min) — Higher is better v] |
+| |
+| Target Value * (shows date picker |
+| [40,00,000 ] if UoM = timeline) |
+| |
+| Weightage (%) * |
+| [30 ] Remaining: 45% | Min: 10% |
+| ! Error if < 10% or > remaining available |
+| |
+| [Cancel] [### Save Goal ###] (yellow)|
++------------------------------------------------+
+GoalTrack | AtomQuest Hackathon 1.0 Page 23 of 46
+
+========== PAGE 24 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Screen 5 — Quarterly Check-in Page (Employee)
++-------------+--------------------------------------------+
+| SIDEBAR | Q1 Check-in — April to June 2025 |
+| | Window: Open until 31st July 2025 |
+| | |
+| | Overall Q1 Score: 62% |
+| | [################-----------] 62% |
+| | |
+| | +------------------------------------------+|
+| | | Achieve Rs.40L Regional Revenue ||
+| | | Target: Rs.40,00,000 ||
+| | | ----------------------------------------- ||
+| | | Actual Achievement: [Rs. 18,00,000 ] ||
+| | | Status: [On Track v] ||
+| | | Notes: [Revenue improving in Q1... ] ||
+| | | (Optional — context for manager) ||
+| | | ||
+| | | Projected Score: 45% (updates live) ||
+| | +------------------------------------------+|
+| | |
+| | [Save Progress] [### Submit Check-in ###] |
++-------------+--------------------------------------------+
+Note: If window closed => show "Next window opens Oct 1"
+Screen 6 — Manager Dashboard
++-------------+--------------------------------------------+
+| [GoalTrack] | Manager Dashboard — FY 2025-26 |
+| SIDEBAR +--------------------------------------------+
+| > Dashboard | +--------+ +--------+ +--------+ +--------+|
+| Team Goals| | Team | |Pending | |Check-in| |Check-in||
+| Checkin | |Members | |Approval| |Complete| |Pending |||
+| Shared | | 8 | | 3 | | 5 | | 3 |||
+| Goals | +--------+ +--------+ +--------+ +--------+|
+| | |
+| | Team Overview |
+| | +--Name-------+--Goals-+--Status---+--Q1--+|
+| | | Rahul S | 5/5 | Approved | Done |||
+| | | Priya M | 3/5 | Pending |Pending||
+| | | Arun K | 5/5 | Returned |Pending||
+| | | Sneha P | 0/0 | Not Started| - |||
+| | +-------------+--------+-----------+------+|
++-------------+--------------------------------------------+
+Screen 7 — Goal Review Page (Manager — per employee)
++-------------+--------------------------------------------+
+| SIDEBAR | Reviewing Goals — Rahul Sharma |
+| | Department: Sales | Submitted: 12 May 2025 |
+| | Total Weightage: 100% OK |
+GoalTrack | AtomQuest Hackathon 1.0 Page 24 of 46
+
+========== PAGE 25 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+| | |
+| | +------------------------------------------+|
+| | | Achieve Rs.40L Regional Revenue ||
+| | | UoM: Numeric (Min) | Target: Rs.40,00,000 ||
+| | | Weightage: 30% ||
+| | | ----------------------------------------- ||
+| | | Edit Target: [Rs. 40,00,000 ] ||
+| | | Edit Weightage: [30 ]% ||
+| | | Comment: [ ] ||
+| | | ||
+| | | [Return] [Edit & Approve] [### Approve ###]||
+| | +------------------------------------------+|
+| | |
+| | [Return All] [### Approve All Goals ###] |
++-------------+--------------------------------------------+
+Screen 8 — Check-in Review Page (Manager — per employee)
++-------------+--------------------------------------------+
+| SIDEBAR | Q1 Check-in Review — Rahul Sharma |
+| | |
+| | Planned vs Actual |
+| | +--Goal------+--Planned-+--Actual-+-Score-+|
+| | | Revenue | Rs.40L | Rs.18L | 45% ||
+| | | Partners | 10 | 4 | 40% ||
+| | | Incidents | 0 | 0 | 100% ||
+| | +------------+----------+---------+-------+|
+| | |
+| | Overall Q1 Score: 61.7% |
+| | [################-----------] |
+| | |
+| | Manager Check-in Comment * |
+| | [Discussed pipeline. Revenue on track. ] |
+| | [Q2 acceleration plan agreed. ] |
+| | |
+| | [### Submit Check-in Review ###] (yellow) |
++-------------+--------------------------------------------+
+Screen 9 — Push Shared Goal Page (Manager/Admin)
++-------------+--------------------------------------------+
+| SIDEBAR | Push Departmental KPI to Team |
+| | |
+| | Goal Details (recipients cannot edit these)|
+| | +------------------------------------------+|
+| | | Thrust Area: Sales & Revenue Growth ||
+| | | Goal Title: Achieve Rs.40L Revenue ||
+| | | Description: [ ] ||
+| | | UoM: Numeric (Min) ||
+| | | Target: Rs.40,00,000 (LOCKED) ||
+| | +------------------------------------------+|
+GoalTrack | AtomQuest Hackathon 1.0 Page 25 of 46
+
+========== PAGE 26 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+| | |
+| | Select Recipients |
+| | [x] Rahul Sharma [x] Priya Menon |
+| | [x] Arun Kumar [ ] Sneha Patel |
+| | [Select All] [Deselect All] |
+| | |
+| | [### Push Goal to Selected Employees ###] |
++-------------+--------------------------------------------+
+Screen 10 — Admin Dashboard
++-------------+--------------------------------------------+
+| [GoalTrack] | Admin Dashboard — FY 2025-26 |
+| SIDEBAR +--------------------------------------------+
+| > Dashboard | +--------+ +--------+ +--------+ +--------+|
+| Cycles | | Total | | Goals | |Check-in| |Escalat.||
+| Users | |Employs | |Submit | |Complet.| |Trigger |||
+| Reports | | 124 | | 89% | | 72% | | 5 |||
+| Audit | +--------+ +--------+ +--------+ +--------+|
+| Escalate | |
+| | Department Completion (this quarter) |
+| | Sales [################----] 80% |
+| | R&D [##########----------] 50% |
+| | Manufacturing[####################] 100% |
+| | Marketing [##############------] 70% |
+| | |
+| | Recent Activity |
+| | - Rahul S submitted goals (2 mins ago) |
+| | - Priya M check-in done (1 hour ago) |
+| | - Escalation triggered: Arun K (3 hrs ago)|
++-------------+--------------------------------------------+
+Screen 11 — Cycle Management Page (Admin)
++-------------+--------------------------------------------+
+| SIDEBAR | Cycle Management |
+| | Current: FY 2025-26 [GREEN: Active] |
+| | |
+| | +--Window--------+--Opens---+--Closes-+--Status--+--Action-+|
+| | | Goal Setting | May 1 | May 31 | Closed | Edit ||
+| | | Q1 Check-in | Jul 1 | Jul 31 | OPEN(G) | Close ||
+| | | Q2 Check-in | Oct 1 | Oct 31 | Upcoming | Edit ||
+| | | Q3 Check-in | Jan 1 | Jan 31 | Upcoming | Edit ||
+| | | Q4 / Annual | Mar 1 | Apr 30 | Upcoming | Edit ||
+| | +----------------+----------+---------+----------+--------+|
+| | |
+| | [### + Create New Cycle ###] (yellow) |
++-------------+--------------------------------------------+
+G=Green badge. Status: Upcoming=grey, Open=green, Closed=red
+GoalTrack | AtomQuest Hackathon 1.0 Page 26 of 46
+
+========== PAGE 27 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Screen 12 — Reports Page (Admin — 3 Tabs)
++-------------+--------------------------------------------+
+| SIDEBAR | Reports & Analytics |
+| | [Achievement Report] [Completion] [Analytics]|
+| | |
+| | === Achievement Report Tab === |
+| | Filters: [Dept v] [Quarter v] [Status v] |
+| | |
+| | +--Employee-+-Dept-+--Goal---+Plan+Act+Sc+|
+| | | Rahul S |Sales | Revenue |40L |18L|45%||
+| | | Priya M |Mktg | Campaigns| 10 | 7 |70%||
+| | +----------+------+---------+----+---+---+|
+| | |
+| | Score Colors: >=80%=Green, 50-79%=Yellow, <50%=Red|
+| | |
+| | [Export CSV] [### Export Excel ###] |
+| | |
+| | === Analytics Tab === |
+| | [Bar: Dept scores] [Line: QoQ] [Pie: Status]|
++-------------+--------------------------------------------+
+Screen 13 — Audit Trail Page (Admin)
++-------------+--------------------------------------------+
+| SIDEBAR | Audit Trail — Post Lock Changes |
+| | |
+| | Filters: [Employee v] [Date From] [To] |
+| | |
+| | +--By-----+--Goal---+--Change------+--Old-+--New-+--When-+|
+| | | Admin | Revenue | target_change|Rs.40L|Rs.50L| 2 hrs ||
+| | | Manager | Partners| weightage | 20% | 25% | 1 day ||
+| | | Admin | Revenue | goal_unlocked|locked|draft | 2 days||
+| | +--------+--------+--------------+------+------+-------+|
++-------------+--------------------------------------------+
+Screen 14 — Escalation Rules Page (Admin)
++-------------+--------------------------------------------+
+| SIDEBAR | Escalation Configuration |
+| | |
+| | Escalation Rules |
+| | +--Rule------------------+--Days-+--On/Off-+--Save-+|
+| | | Goal not submitted | [7 ] | Toggle | Save ||
+| | | Goal not approved | [5 ] | Toggle | Save ||
+| | | Check-in not completed | [3 ] | Toggle | Save ||
+| | +-----------------------+-------+---------+-------+|
+| | |
+| | Escalation Log |
+| | +--Type-----------+--For--+--Against-+--Level-+--Status-+|
+| | | Goal not submit | Arun K | Manager | 1 | Pending ||
+GoalTrack | AtomQuest Hackathon 1.0 Page 27 of 46
+
+========== PAGE 28 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+| | | Not approved | Priya M| Rahul S | 2 | Notified||
+| | +-----------------+-------+----------+--------+---------+|
+| | [Mark Resolved] button per row |
++-------------+--------------------------------------------+
+6.4 Navigation Flow Diagram
+LOGIN
+|
++---> EMPLOYEE
+| |--- Dashboard (stat cards, goals summary)
+| |--- My Goals --> Create/Edit Goal (modal)
+| +--- Check-ins --> Quarterly check-in form
+|
++---> MANAGER
+| |--- Dashboard (team overview)
+| |--- Team Goals --> Goal Review [per employee]
+| |--- Check-in Review --> Review [per employee]
+| +--- Shared Goals --> Push KPI to team
+|
++---> ADMIN
+|--- Dashboard (big picture + activity feed)
+|--- Cycle Management (open/close windows)
+|--- User Management (create/assign users)
+|--- Reports --> Achievement / Completion / Analytics
+|--- Audit Trail (post-lock change log)
++--- Escalations (rules config + log)
+GoalTrack | AtomQuest Hackathon 1.0 Page 28 of 46
+
+========== PAGE 29 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 7 — APP ARCHITECTURE
+7.1 Complete Folder Structure
+goal-tracker/
+|
++-- app/ # Next.js App Router
+| +-- (auth)/
+| | +-- login/page.jsx # Screen 1 — Login
+| |
+| +-- (dashboard)/
+| | +-- employee/
+| | | +-- layout.jsx # Employee layout + black sidebar
+| | | +-- dashboard/page.jsx # Screen 2
+| | | +-- goals/page.jsx # Screen 3
+| | | +-- checkins/page.jsx # Screen 5
+| | |
+| | +-- manager/
+| | | +-- layout.jsx # Manager layout + sidebar
+| | | +-- dashboard/page.jsx # Screen 6
+| | | +-- team-goals/page.jsx # Screen 7 list
+| | | +-- team-goals/[employeeId]/page.jsx # Review
+| | | +-- checkin-review/page.jsx # Screen 8 list
+| | | +-- checkin-review/[employeeId]/page.jsx
+| | | +-- shared-goals/page.jsx # Screen 9
+| | |
+| | +-- admin/
+| | +-- layout.jsx # Admin layout + sidebar
+| | +-- dashboard/page.jsx # Screen 10
+| | +-- cycles/page.jsx # Screen 11
+| | +-- users/page.jsx # User Management
+| | +-- reports/page.jsx # Screen 12
+| | +-- audit/page.jsx # Screen 13
+| | +-- escalations/page.jsx # Screen 14
+| |
+| +-- api/ # Backend API routes
+| +-- auth/route.js
+| +-- goals/route.js + [id]/route.js
+| +-- checkins/route.js + [id]/route.js
+| +-- cycles/route.js + [id]/route.js
+| +-- users/route.js + [id]/route.js
+| +-- shared-goals/route.js
+| +-- audit/route.js
+| +-- reports/achievement/route.js
+| +-- reports/completion/route.js
+| +-- escalations/route.js + rules/route.js
+|
++-- components/
+| +-- ui/ # shadcn/ui: Button, Card, Input, Select...
+| +-- layout/ # Sidebar, Navbar, RoleGuard
+| +-- goals/ # GoalCard, GoalForm, WeightageBar, GoalTable
+| +-- checkins/ # CheckInCard, CheckInForm, ProgressScore
+GoalTrack | AtomQuest Hackathon 1.0 Page 29 of 46
+
+========== PAGE 30 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+| +-- dashboard/ # StatCard, DeptProgress, ActivityFeed
+| +-- reports/ # AchievementTable, ExportButton, analytics/
+| +-- escalations/ # EscalationRuleCard, EscalationLog
+|
++-- lib/
+| +-- supabase/client.js + server.js
+| +-- utils/scoreCalculator.js
+| +-- utils/dateHelpers.js
+| +-- utils/exportHelpers.js
+| +-- utils/validators.js
+| +-- utils/escalationChecker.js
+|
++-- hooks/
+| +-- useAuth.js, useGoals.js, useCheckIns.js
+| +-- useCycle.js, useRealtime.js
+|
++-- middleware.js # Route protection + role redirects
++-- tailwind.config.js # Black + yellow theme config
++-- .env.local # Supabase URL + anon key
+7.2 All 20 API Routes
+Route Method Role Description
+/api/goals GET All Fetch goals filtered by role + active cycle
+/api/goals POST Employee Create goal with all validations
+/api/goals/[id] PUT All Update goal status, target, weightage
+/api/checkins GET All Fetch check-ins filtered by role
+/api/checkins POST Employee Submit quarterly check-in
+/api/checkins/[id] PUT Manager Add manager comment, mark done
+/api/cycles GET All Get active cycle and all window dates
+/api/cycles POST Admin Create new yearly cycle
+/api/cycles/[id] PUT Admin Update window open/close dates
+/api/users GET Mgr/Admin Get team members or all users
+/api/users POST Admin Create new user with role assignment
+/api/users/[id] PUT Admin Update user role, department, manager
+/api/shared-goals POST Mgr/Admin Push shared goal to selected employees
+/api/shared-goals GET All Get shared goals for current user
+/api/audit GET Admin Get full audit trail with filters
+/api/reports/achievement GET Admin Achievement report — all employees
+/api/reports/completion GET Admin Check-in completion real-time status
+GoalTrack | AtomQuest Hackathon 1.0 Page 30 of 46
+
+========== PAGE 31 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+/api/escalations GET Admin Get escalation log
+/api/escalations POST System Create new escalation record
+/api/escalations/rules GET+PUT Admin Get and update escalation rules
+7.3 Three Layers of Security
+Layer Where What It Does Protects Against
+1 — middleware.js (runs on every Redirects unauthenticated Accidental access,
+Middleware request) users + wrong role URL guessing
+2 — RoleGuard.jsx (React Hides UI buttons and UI confusion,
+RoleGuard component) sections by role accidental actions
+3 — RLS Supabase Row Level Database refuses wrong- Direct API attacks,
+Security (DB level) role queries bypassed UI
+7.4 Data Flow Architecture Diagram
+=== BROWSER ===
+[Employee Pages] [Manager Pages] [Admin Pages]
+| | |
++---------------+---------------+
+|
+[Custom React Hooks]
+useGoals / useCheckIns
+useCycle / useRealtime
+|
+HTTP requests / fetch()
+|
+=== NEXT.JS SERVER ===
+[API Routes — /api/*]
+|
+[Middleware — role checking]
+|
+[Supabase Server Client]
+|
+=== SUPABASE ===
+[Auth] [PostgreSQL — 9 tables] [Realtime]
+3 roles | 4 tables live
+|
+[DB Triggers]
+score_calc | audit_log | updated_at
+|
+GoalTrack | AtomQuest Hackathon 1.0 Page 31 of 46
+
+========== PAGE 32 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+[RLS Policies]
+employee | manager | admin rules
+GoalTrack | AtomQuest Hackathon 1.0 Page 32 of 46
+
+========== PAGE 33 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 8 — BUILD ORDER (PHASE BY PHASE)
+Core Principle: Build vertically — one complete feature at a time. Never build all UI first
+then all APIs. Always have something demo-able.
+Phase 0 — Project Setup
+• Create Next.js project, install Tailwind + shadcn/ui + all dependencies
+• Configure black (#000000) + yellow (#FDB813) theme in tailwind.config.js
+• Create Supabase project, run all 9 table SQL scripts
+• Set up RLS policies and 3 DB triggers
+• Create .env.local with Supabase credentials
+• Seed demo data: 8 thrust areas, 1 active cycle, 7 demo users
+• Test Supabase connection from Next.js
+• Deploy empty app to Vercel — get live URL immediately
+Complete When: Project runs locally, DB ready, live URL exists, GitHub first commit
+done.
+Phase 1 — Authentication
+• Build Login page — email + password + Supabase Auth + role-based redirect
+• Build middleware.js — protect all routes, redirect by role
+• Build Sidebar component (black, role-aware navigation links)
+• Build Navbar component (top bar with user info + logout)
+• Build 3 empty dashboard shells (just layout, no content yet)
+Complete When: All 3 roles log in, land on correct dashboard, sidebar shows correct
+menu.
+Phase 2 — Employee Goal Creation
+• Build /api/goals GET + POST routes with all validation
+• Build useGoals.js hook
+• Build WeightageBar component (live meter updating in real time)
+• Build GoalForm component — all 6 fields, UoM changes target input type
+• Build GoalCard component with status badges
+• Build My Goals page — cards, WeightageBar, Add Goal button, Submit All
+• Build Employee Dashboard — 4 stat cards, goals summary table
+• Enforce all validations: 100% total, min 10%, max 8 goals
+GoalTrack | AtomQuest Hackathon 1.0 Page 33 of 46
+
+========== PAGE 34 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Complete When: Employee creates/submits goals, all validations block wrong inputs,
+dashboard shows correct stats.
+Phase 3 — Manager Approval
+• Build /api/goals/[id] PUT route (update status, target, weightage)
+• Build /api/users GET route (manager fetches team)
+• Build Manager Dashboard — team overview table, pending count
+• Build Team Goals page — list of team members with submission status
+• Build Goal Review page per employee — inline edit, approve/return/edit buttons
+• Goal locking on full approval, audit log auto-fires on edits
+Complete When: Manager approves goals, goals lock, audit log auto-creates, return
+comment visible to employee.
+Phase 4 — Quarterly Check-ins
+• Build /api/checkins GET + POST + PUT routes
+• Build useCheckIns.js hook
+• Build lib/utils/scoreCalculator.js — all 4 UoM formulas
+• Build Check-in page — actual achievement inputs, live score preview, notes field
+• Build Check-in Review page — planned vs actual table, manager comment form
+• Build useCycle.js — checks if current window is open, disables inputs if closed
+Complete When: Check-in works, scores calculate correctly for all 4 UoM types, manager
+reviews, window enforcement works.
+Phase 5 — Admin Core
+• Build /api/cycles GET + POST + PUT routes
+• Build Cycle Management page — window controls, create cycle form
+• Build User Management page — list, create, assign role + manager
+• Build Admin Dashboard — big picture stats, dept completion bars, activity feed
+• Build Shared Goals flow — create KPI, select recipients, push to team
+• Build /api/shared-goals routes, test achievement sync
+Complete When: Admin controls windows, user management works, shared goals push
+and sync correctly.
+Phase 6 — Reports & Audit
+• Build /api/reports/achievement route — joined query across 3 tables
+• Build /api/reports/completion route
+GoalTrack | AtomQuest Hackathon 1.0 Page 34 of 46
+
+========== PAGE 35 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+• Build Achievement Report table — filters, color-coded scores
+• Build ExportButton — CSV and Excel export using SheetJS
+• Build Completion Dashboard — Supabase Realtime subscription, live updates
+• Build Audit Trail page — /api/audit route, who/what/when table with filters
+Complete When: Excel export downloads correctly, completion dashboard updates live,
+audit trail shows post-lock changes.
+Phase 7 — Analytics Module (Bonus)
+• Set up Recharts
+• Build BarChart — department-wise average scores (black bars, yellow highlights)
+• Build LineChart — quarter-on-quarter progress per department
+• Build PieChart — goal status distribution
+• Add Analytics tab to Reports page, connect all charts to real data
+Complete When: 3 charts render with real data, look impressive during demo.
+Phase 8 — Escalation Module (Bonus)
+• Build Escalation Rules page — threshold editing, on/off toggle per rule
+• Build /api/escalations/rules routes
+• Build escalationChecker.js — checks all 3 rule types, creates escalation records
+• Build Escalation Log table — who/type/level/status, mark resolved button
+• Build /api/escalations routes
+Complete When: Rules configurable, log shows triggered escalations, can demo with
+pre-seeded data.
+Phase 9 — Polish & Bug Fix
+• Add loading skeleton states to all pages
+• Add error states with retry button to all pages
+• Add empty states with helpful messages + action buttons
+• Check mobile responsiveness on all 14 screens
+• Consistent black & yellow theme audit across all pages
+• Test all 3 roles end to end — full journey per role
+• Test all validations: >100% blocked, >8 goals blocked, outside window blocked
+• Test edge cases: 0 goals, 0 team members, no active cycle
+• Seed realistic demo data — 7 users, realistic goals, Q1 check-ins (some done, some
+pending)
+Complete When: Zero broken flows, all edge cases handled, demo data looks realistic.
+GoalTrack | AtomQuest Hackathon 1.0 Page 35 of 46
+
+========== PAGE 36 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Phase 10 — Demo Prep
+• Write demo script (which screens in which order — written during Phase 9)
+• Note all 7 login credentials
+• Practice demo 2-3 times
+• Create architecture diagram — show both hackathon and production stacks
+• Final Vercel deployment — confirm live URL works
+• Submit: GitHub repo, architecture diagram, live URL, login credentials
+Complete When: Demo runs smoothly without fumbling, all submission items ready.
+Cut Strategy if Running Behind
+Situation What to Cut What to Keep
+Slightly behind Skip Phase 8 — Escalation Module Phases 0-7, 9, 10
+Further behind Skip Phase 7 + 8 — both bonus Phases 0-6, 9, 10
+features
+Very behind Skip all bonus features, simplify reports Core Phases 0-6 must be bug-free
+NEVER cut Phases 0-6. A bug-free, beautiful, complete core app scores higher than a
+buggy app with bonus features.
+GoalTrack | AtomQuest Hackathon 1.0 Page 36 of 46
+
+========== PAGE 37 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 9 — AI PROMPTING STRATEGY
+9.1 Seven Golden Rules of Vibe Coding
+14. Always give CONTEXT before asking to build — paste master context first
+15. One feature at a time — never ask for everything at once
+16. Always specify the tech stack in every prompt
+17. Always reference the design system (black + yellow) explicitly
+18. Always tell the AI what NOT to do — prevents unwanted choices
+19. When it makes a mistake — correct precisely, not vaguely
+20. Always ask it to explain what it built after — catches misunderstandings
+9.2 The Master Context Prompt
+Save this and paste it at the START of every new AI conversation or when starting a new
+feature:
+I am building a Goal Setting & Tracking Portal for a hackathon.
+TECH STACK:
+- Framework: Next.js 14 (App Router only — never Pages Router)
+- Styling: Tailwind CSS + shadcn/ui (never raw CSS)
+- Database: Supabase (PostgreSQL + Auth + Realtime)
+- Charts: Recharts | Excel: SheetJS | Deployment: Vercel
+DESIGN SYSTEM:
+- Primary buttons/accents: #FDB813 (yellow)
+- Sidebar/Navbar: #000000 (black)
+- Page background: #F5F5F5 | Cards: #FFFFFF
+- Never use any other colors
+THREE ROLES: employee / manager / admin
+KEY BUSINESS RULES:
+- Total goal weightage per employee = exactly 100%
+- Min weightage per goal = 10% | Max goals = 8
+- Goals lock after manager approval
+- Progress score = calculated by DB trigger ONLY
+- Employees can only update during open cycle windows
+- Every post-lock change must create an audit log entry
+9 DB TABLES: users, goals, thrust_areas, cycles,
+check_ins, shared_goals, audit_logs,
+escalation_rules, escalations
+See RULES.md for full context.
+GoalTrack | AtomQuest Hackathon 1.0 Page 37 of 46
+
+========== PAGE 38 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Now build: [DESCRIBE SPECIFIC FEATURE HERE]
+9.3 Key Prompts Per Phase
+Phase What to Say
+Phase 0 — "Set up Next.js 14 with Tailwind, configure #FDB813 as primary color and #000000
+Setup as sidebar color. Install shadcn/ui and Supabase. Create folder structure as
+specified. Do not build any pages yet."
+Phase 1 — "Build the Login page. Email + password form. Connect to Supabase Auth. After
+Auth login, fetch role from public.users and redirect: employee=/employee/dashboard,
+manager=/manager/dashboard, admin=/admin/dashboard."
+Phase 2 — "Build the GoalForm component. 6 fields: thrust area dropdown, title, description,
+Goals UoM dropdown, target (switches to date picker if UoM=timeline), weightage. Show
+live remaining weightage. Validate min 10%, max 100% total, max 8 goals."
+Phase 3 — "Build the Goal Review page for managers. Show all goals for [employeeId]. Each
+Approval goal has inline edit for target/weightage, plus Approve/Return/Edit&Approve buttons.
+On approve, set status=locked. On edit, create audit_log entry."
+Phase 4 — "Build the Check-in page. For each approved goal, show actual achievement input,
+Check-in status dropdown, notes textarea. Show live score preview using scoreCalculator.js.
+Only show if active cycle window is open."
+Phase 5 — "Build the Cycle Management page. Show all 5 windows with their dates and current
+Admin status (Upcoming/Open/Closed). Add Open Now and Close Now buttons that update
+the dates. Add Create New Cycle form."
+Phase 6 — "Build Achievement Report table with filters for department, quarter, status. Color-
+Reports code Score column: >=80% green, 50-79% yellow, <50% red. Add Export to Excel
+button using SheetJS."
+Phase 7 — "Add Analytics tab to Reports page. Build 3 Recharts charts: BarChart (dept avg
+Analytics scores, #FDB813 bars), LineChart (quarter-on-quarter), PieChart (goal status
+distribution). Connect to real data."
+9.4 Debugging Prompts
+When AI builds wrong thing:
+"That is not what I asked for. I specifically need [X]. Keep everything else exactly the same.
+Only change [specific thing]."
+When Supabase throws an error:
+"I am getting this error: [paste error]. My table structure is: [paste]. My RLS policies are: [paste].
+What is wrong? Fix only this issue."
+When validation is broken:
+GoalTrack | AtomQuest Hackathon 1.0 Page 38 of 46
+
+========== PAGE 39 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+"Weightage validation is not working. It must enforce: total = exactly 100% before submit,
+minimum 10% per goal, maximum 8 goals. Current behavior: [describe]. Fix only the validation,
+do not change anything else."
+When styles are wrong:
+"Fix styling only. Primary buttons must use bg-[#FDB813] text-black. Sidebar must use bg-
+[#000000]. Page background must use bg-[#F5F5F5]. Do not touch any functionality."
+9.5 Power Tips for Vibe Coding
+Tip What to Do and Why
+Always start session Paste master context first. AI has no memory between sessions — this file
+with context IS the memory.
+After AI builds Ask: "Explain what you built and how it connects to the database schema."
+something Catches misunderstandings early.
+One file at a time Never ask for multiple unrelated files at once. AI quality drops significantly
+with too many simultaneous concerns.
+Save working code git add . && git commit -m "Phase X done" after every working feature.
+immediately Never lose working code to AI refactoring.
+Stop unsolicited If AI says "let me also refactor this for better structure" — say "No. Only add
+refactoring what I asked for." Refactoring breaks working code.
+Point to specific rule When AI violates a rule say "You violated Business Rule #3 — max 8 goals.
+violations Fix only that." Not "this is wrong fix it."
+GoalTrack | AtomQuest Hackathon 1.0 Page 39 of 46
+
+========== PAGE 40 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 10 — RULES.MD FILE (AI INSTRUCTION FILE)
+The RULES.md file is provided as a separate file alongside this document. It is the single
+source of truth for the AI coding assistant.
+10.1 What RULES.md Contains
+Section Contents
+Who You Are AI behavior instructions — how to act, what to prioritize, what to never
+skip
+Tech Stack Every library with strict do/do-not rules
+Design System Exact hex colors, typography, layout rules — nothing ambiguous
+Database Schema All 9 tables with exact column definitions, types, and constraints
+User Roles & Access What each role can and cannot do in the system
+Business Rules 16 numbered non-negotiable rules — AI must never violate these
+Progress Score Formulas Exact JavaScript calculation logic for all 4 UoM types
+Folder Structure Complete file tree the AI must follow
+API Design Rules Consistent response format, HTTP status codes, query efficiency
+Performance Rules Caching strategy, N+1 prevention, realtime configuration
+Component Requirements Every component must have loading/error/empty states
+Things to Never Do 16 hard restrictions the AI must never violate
+Demo Credentials All 7 test accounts for judges
+Build Order Phase by phase with cut rules if running behind
+Testing Checklist Per-phase verification checklist
+How to Use Instructions for any AI IDE or chat-based AI tool
+10.2 How to Use RULES.md
+• In any AI-powered IDE: Add as project rules / system prompt / custom instructions file
+• In chat-based AI: Paste entire file at the very start of every new conversation
+• When starting a new chat: Always paste RULES.md first — AI has no memory between
+sessions
+• When AI violates a rule: Point to the specific numbered rule e.g. "You violated Business
+Rule #3"
+• When context is lost in long conversation: Re-paste RULES.md and continue
+GoalTrack | AtomQuest Hackathon 1.0 Page 40 of 46
+
+========== PAGE 41 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 11 — DEMO CREDENTIALS & SUBMISSION
+CHECKLIST
+11.1 All 7 Demo User Accounts
+Role Email Password Department Reports To
+Admin admin@goaltrack.com Admin@123 HR —
+Manager 1 manager1@goaltrack.com Manager@123 Sales Admin
+Manager 2 manager2@goaltrack.com Manager@123 R&D Admin
+Employee 1 emp1@goaltrack.com Employee@123 Sales Manager 1
+Employee 2 emp2@goaltrack.com Employee@123 Sales Manager 1
+Employee 3 emp3@goaltrack.com Employee@123 R&D Manager 2
+Employee 4 emp4@goaltrack.com Employee@123 R&D Manager 2
+11.2 Mandatory Submission Items
+• Live hosted demo URL (Vercel — get this in Phase 0 immediately)
+• GitHub / GitLab repository with all commits (version history matters)
+• Architecture diagram PDF or image — show BOTH hackathon stack and production
+Azure path
+• Login credentials for all 3 roles (or provide all 7 accounts above)
+11.3 When to Write the Demo Script
+Write the demo script during Phase 9 (polish & bug fix) when the app is nearly complete —
+not before. Base it on what actually works, not assumptions.
+The demo script will cover:
+• Opening pitch — 30 seconds: what problem, why it matters, one-line solution
+• Screen-by-screen flow — 8-10 minutes: scripted journey through all 3 roles
+• Talking points per screen — what to say while clicking each feature
+• Closing statement — 30 seconds: architecture summary, cost comparison, why this
+beats Lattice
+• Backup plans — what to skip if something breaks during live demo
+• Anticipated judge questions with prepared answers
+GoalTrack | AtomQuest Hackathon 1.0 Page 41 of 46
+
+========== PAGE 42 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 12 — COMPLETE TESTING CHECKLIST
+Phase 1 — Authentication
+• All 3 roles can log in successfully
+• Wrong password shows clear error message
+• Each role lands on their correct dashboard after login
+• Sidebar shows correct navigation links per role
+• Employee accessing /manager/* gets redirected to employee dashboard
+• Manager accessing /admin/* gets redirected to manager dashboard
+Phase 2 — Employee Goal Creation
+• Employee can create a goal with all 6 fields
+• Thrust area dropdown shows only active thrust areas
+• UoM dropdown changes target input (number vs date picker)
+• WeightageBar updates in real time as employee types weightage
+• Adding goal below 10% weightage shows error and is blocked
+• Adding more than 8 goals shows error and blocks the 9th
+• Cannot submit for approval if total weightage is not exactly 100%
+• Submit All button changes all draft goals to submitted status
+• Goal Setting window closed => Add Goal button disabled with message
+• Employee dashboard shows correct stat card counts
+Phase 3 — Manager Approval
+• Manager Dashboard shows only their direct reports
+• Pending approval count is accurate
+• Manager can open any employee goal sheet
+• Can edit target inline => goal saves with new target
+• After edit => audit_logs table has new entry with old/new values
+• Can approve single goal => status changes to locked
+• Can return goal with comment => employee sees comment on their goal card
+• Approve All button locks all goals for employee at once
+• After all approved => employee cannot edit any goals
+Phase 4 — Quarterly Check-ins
+GoalTrack | AtomQuest Hackathon 1.0 Page 42 of 46
+
+========== PAGE 43 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+• Q1 window open => Employee sees check-in form for all approved goals
+• Q1 window closed => Check-in form hidden with message showing next window date
+• numeric_min: 18L actual / 40L target = 45% score (verify in DB)
+• numeric_max: 3hrs actual, 5hrs target = 100% (capped) score
+• timeline: actual_date = target_date = 100% score
+• timeline: actual_date > target_date = 0% score
+• zero_based: actual = 0 = 100% score
+• zero_based: actual = 1 = 0% score
+• Cannot submit check-in without entering actual values for all goals
+• Manager can see Planned vs Actual table for each employee
+• Manager can add comment and mark check-in done
+• Completion dashboard shows this employee as done
+Phase 5 — Admin Core
+• Admin can open Q1 window => employees immediately see check-in available
+• Admin can close Q1 window => check-in immediately disabled for employees
+• Admin can create a new user with any role
+• Shared goal pushed to 3 employees => all 3 see it in their goals
+• Recipients cannot edit title or target of shared goal
+• Recipients can edit weightage of shared goal
+• Primary owner updates achievement => all 3 linked employees get same score
+Phase 6 — Reports & Audit
+• Achievement report shows all employees in the system
+• Department filter correctly filters rows
+• Quarter filter shows correct check-in data
+• Score color coding works: >=80% green, 50-79% yellow, <50% red
+• Export CSV downloads a valid CSV file with all filtered data
+• Export Excel downloads a valid .xlsx file with all filtered data
+• Completion dashboard shows real-time who has/has not done check-ins
+• Completing a check-in immediately updates the completion dashboard (Realtime)
+• Audit trail shows all post-lock changes with who/what/when
+• Audit trail date filter correctly filters entries
+GoalTrack | AtomQuest Hackathon 1.0 Page 43 of 46
+
+========== PAGE 44 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+SECTION 13 — QUICK REFERENCE CARD
+13.1 The 16 Non-Negotiable Business Rules
+# Rule Enforced By
+1 Total weightage = exactly 100% before submission Frontend validation + API
+2 Each goal minimum 10% weightage Frontend + DB CHECK constraint
+3 Maximum 8 goals per employee per cycle API route validation
+4 Goals are LOCKED after manager approval Status machine in API
+5 Locked goals CANNOT be edited without admin RLS + API status check
+6 Every post-lock change MUST create audit log DB trigger (automatic)
+7 Shared goal title and target are READ-ONLY UI disabled + API validation
+8 Recipients can ONLY change weightage of shared UI + API permission check
+goal
+9 Primary owner achievement SYNCS to linked API logic on check-in POST
+employees
+10 Employees can ONLY check-in during open useCycle hook + API date check
+windows
+11 One check-in per goal per quarter per cycle DB UNIQUE constraint
+12 Progress score AUTO-CALCULATED by DB Supabase PostgreSQL trigger
+trigger ONLY
+13 Only ONE cycle can be active at a time Partial unique index + API
+14 Admin controls all window open/close dates Role check in cycle API
+15 Outside window => all relevant inputs DISABLED useCycle hook in UI
+16 Escalation N-day threshold CONFIGURABLE by Escalation rules table
+admin
+13.2 Score Calculation Reference
+UoM Type | Formula | Example
+-------------|----------------------------------------|------------------
+numeric_min | MIN(actual / target * 100, 100) | 18L/40L = 45%
+numeric_max | MIN(target / actual * 100, 100) | 5/3 = 100% (capped)
+timeline | actual <= target ? 100 : 0 | On time = 100%
+zero_based | actual === 0 ? 100 : 0 | 0 incidents = 100%
+Always round to 2 decimal places.
+GoalTrack | AtomQuest Hackathon 1.0 Page 44 of 46
+
+========== PAGE 45 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Always handle division by zero gracefully (return 0).
+13.3 Things to NEVER Do
+# Never Do This Do This Instead
+1 Never store raw passwords Use Supabase Auth — it handles hashing
+2 Never calculate progress score DB trigger auto-calculates — trust it
+on frontend and store it
+3 Never allow editing locked goals Check status === locked before showing edit button
+from UI
+4 Never allow check-in outside useCycle hook gates all check-in inputs
+open window
+5 Never allow more than 8 goals Check count before allowing POST /api/goals
+6 Never submit if total weightage is Disable Submit All button until WeightageBar = 100%
+not 100%
+7 Never allow goal weightage Real-time validation + DB CHECK constraint
+below 10%
+8 Never use colors outside design Only use #FDB813, #000000, #F5F5F5, #FFFFFF + status
+system colors
+9 Never use Pages Router Always App Router — folder structure is app/
+10 Never write inline styles Always Tailwind CSS utility classes
+11 Never skip error handling in API Always wrap in try/catch, return proper status codes
+routes
+12 Never expose Supabase service Only use service key in server-side API routes
+role key to browser
+13 Never do SELECT * queries Always select only needed columns for performance
+14 Never skip loading/error/empty Every component must handle all 3 states
+states
+15 Never do N+1 database queries Always use joins to fetch related data in one query
+16 Never install libraries outside Ask before adding anything new
+tech stack
+13.4 Caching Strategy Reference
+Data Type Cache Duration Next.js Setting
+Thrust areas list Forever (static) next: { revalidate: false }
+Active cycle dates 1 hour next: { revalidate: 3600 }
+GoalTrack | AtomQuest Hackathon 1.0 Page 45 of 46
+
+========== PAGE 46 ==========
+GoalTrack — AtomQuest Hackathon 1.0 — Complete Planning Document Confidential
+Employee goals 5 minutes next: { revalidate: 300 }
+Manager team list 30 minutes next: { revalidate: 1800 }
+Completion dashboard Never (realtime) cache: 'no-store'
+Progress scores 5 minutes next: { revalidate: 300 }
+GoalTrack — AtomQuest Hackathon 1.0
+Complete Project Planning Document | Version 1.0
+Build order: Setup -> Auth -> Goals -> Approval -> Check-ins -> Admin -> Reports -> Analytics -> Escalation -> Polish
+-> Demo
+GoalTrack | AtomQuest Hackathon 1.0 Page 46 of 46

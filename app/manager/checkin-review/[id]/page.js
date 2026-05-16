@@ -1,5 +1,6 @@
 import { getEmployeeCheckIns } from '../actions'
-import { getActiveCycle, getUserProfile } from '@/app/manager/team/actions'
+import { getActiveCycle } from '@/app/employee/goals/actions'
+import { getUserProfile } from '@/app/manager/team/actions'
 import { getCurrentQuarterInfo } from '@/lib/utils/dateHelpers'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'

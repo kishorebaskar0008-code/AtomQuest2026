@@ -2,6 +2,8 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { Navbar } from '@/components/layout/Navbar'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import { getActiveCycle } from '../employee/goals/actions'
+import { getCurrentQuarterInfo } from '@/lib/utils/dateHelpers'
 
 export default async function ManagerLayout({ children }) {
   const supabase = await createClient()
@@ -28,11 +30,19 @@ export default async function ManagerLayout({ children }) {
     { label: 'Shared Goals', href: '/manager/shared-goals', icon: 'shared' },
   ]
 
+  const activeCycle = await getActiveCycle()
+  const windowStatus = getCurrentQuarterInfo(activeCycle)
+
   return (
     <div className="flex h-screen bg-[#F5F5F5]">
       <Sidebar items={navItems} role="manager" />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Navbar userName={userData.name} role="Manager (L1)" />
+        <Navbar 
+          userName={userData.name} 
+          role="Manager (L1)" 
+          cycleName={activeCycle?.name} 
+          windowStatus={windowStatus}
+        />
         <main className="flex-1 overflow-y-auto p-8">
           {children}
         </main>

@@ -2,7 +2,9 @@
 
 import { Bell, User } from 'lucide-react'
 
-export function Navbar({ userName, role, cycleName }) {
+import { cn } from '@/lib/utils'
+
+export function Navbar({ userName, role, cycleName, windowStatus }) {
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
       <div className="flex items-center space-x-4">
@@ -10,8 +12,11 @@ export function Navbar({ userName, role, cycleName }) {
           Cycle: <span className="text-black">{cycleName || 'FY 2025-26'}</span>
         </div>
         <div className="h-4 w-[1px] bg-gray-200"></div>
-        <div className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-          Q1 Window Open
+        <div className={cn(
+          "text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider",
+          windowStatus?.isOpen ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"
+        )}>
+          {windowStatus?.name} Window {windowStatus?.isOpen ? 'Open' : 'Closed'}
         </div>
       </div>
       

@@ -35,7 +35,7 @@ export default async function EmployeeCheckinsPage() {
               {quarterInfo?.name} Window: {quarterInfo?.isOpen ? 'OPEN' : 'CLOSED'}
             </div>
             <div className="text-xs font-medium">
-              Ends on {new Date(quarterInfo?.end).toLocaleDateString()}
+              {new Date(quarterInfo?.start).toLocaleDateString()} - {new Date(quarterInfo?.end).toLocaleDateString()}
             </div>
           </div>
         </div>
