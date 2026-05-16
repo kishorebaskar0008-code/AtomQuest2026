@@ -73,7 +73,7 @@ export async function returnGoals(employeeId, comment) {
     .from('goals')
     .update({ 
       status: 'returned',
-      comments: comment 
+      comment 
     })
     .eq('employee_id', employeeId)
     .eq('status', 'submitted')
@@ -103,7 +103,7 @@ export async function reviewGoal(goalId, status, comment) {
     .from('goals')
     .update({ 
       status,
-      comments: comment 
+      comment 
     })
     .eq('id', goalId)
 
