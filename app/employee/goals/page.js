@@ -3,7 +3,7 @@ import { GoalForm } from '@/components/goals/GoalForm'
 import { WeightageBar } from '@/components/goals/WeightageBar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Trash2, AlertCircle, Info, Target, CheckCircle2 } from 'lucide-react'
+import { Trash2, AlertCircle, Info, Target, CheckCircle2, Pencil } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { SubmitGoalsButton } from '@/components/goals/SubmitGoalsButton'
@@ -71,18 +71,34 @@ export default async function EmployeeGoalsPage() {
                       </div>
                       <CardTitle className="text-lg font-bold">{goal.title}</CardTitle>
                     </div>
-                    {goal.status === 'draft' && (
-                      <form action={async (formData) => {
-                        'use server'
-                        const id = formData.get('id')
-                        await deleteGoal(id)
-                      }}>
-                        <input type="hidden" name="id" value={goal.id} />
-                        <Button variant="ghost" size="icon" type="submit" className="text-gray-400 hover:text-red-600">
-                          <Trash2 size={18} />
-                        </Button>
-                      </form>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {(goal.status === 'draft' || goal.status === 'returned') && (
+                        <>
+                          <GoalForm 
+                            thrustAreas={thrustAreas}
+                            activeCycle={activeCycle}
+                            currentTotalWeightage={totalWeightage}
+                            goalCount={goals.length}
+                            initialData={goal}
+                            trigger={
+                              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-blue-600">
+                                <Pencil size={18} />
+                              </Button>
+                            }
+                          />
+                          <form action={async (formData) => {
+                            'use server'
+                            const id = formData.get('id')
+                            await deleteGoal(id)
+                          }}>
+                            <input type="hidden" name="id" value={goal.id} />
+                            <Button variant="ghost" size="icon" type="submit" className="text-gray-400 hover:text-red-600">
+                              <Trash2 size={18} />
+                            </Button>
+                          </form>
+                        </>
+                      )}
+                    </div>
                   </CardHeader>
                   <CardContent className="pb-4">
                     <p className="text-sm text-gray-600 line-clamp-2 mb-4">

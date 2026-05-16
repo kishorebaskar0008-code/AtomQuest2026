@@ -95,13 +95,36 @@ export async function createGoal(goalData) {
   return { success: true }
 }
 
+export async function updateGoal(goalId, goalData) {
+  const supabase = await createClient()
+  
+  const { error } = await supabase
+    .from('goals')
+    .update({
+      thrust_area_id: goalData.thrust_area_id,
+      title: goalData.title,
+      description: goalData.description,
+      uom_type: goalData.uom_type,
+      target_value: goalData.target_value,
+      target_date: goalData.target_date,
+      weightage: Number(goalData.weightage),
+      status: 'draft' // Reset to draft after editing
+    })
+    .eq('id', goalId)
+
+  if (error) return { error: error.message }
+  
+  revalidatePath('/employee/goals')
+  return { success: true }
+}
+
 export async function deleteGoal(goalId) {
   const supabase = await createClient()
   const { error } = await supabase
     .from('goals')
     .delete()
     .eq('id', goalId)
-    .eq('status', 'draft') // Only delete drafts
+    .or('status.eq.draft,status.eq.returned') // Allow deleting drafts or returned goals
 
   if (error) return { error: error.message }
   

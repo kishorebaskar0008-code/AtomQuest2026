@@ -7,16 +7,25 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Plus, Loader2 } from 'lucide-react'
-import { createGoal } from '@/app/employee/goals/actions'
+import { Plus, Loader2, Pencil } from 'lucide-react'
+import { createGoal, updateGoal } from '@/app/employee/goals/actions'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
-export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goalCount }) {
+export function GoalForm({ 
+  thrustAreas, 
+  activeCycle, 
+  currentTotalWeightage, 
+  goalCount, 
+  initialData = null,
+  trigger = null
+}) {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [uom, setUom] = useState('')
-  const [thrustAreaId, setThrustAreaId] = useState('')
+  const [uom, setUom] = useState(initialData?.uom_type || '')
+  const [thrustAreaId, setThrustAreaId] = useState(initialData?.thrust_area_id || '')
+
+  const isEdit = !!initialData
 
   async function onSubmit(event) {
     event.preventDefault()
@@ -32,48 +41,67 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
       target_value: formData.get('target_value'),
       target_date: formData.get('target_date'),
       cycle_id: activeCycle?.id,
-      manager_id: null
+      manager_id: initialData?.manager_id || null
     }
 
-    const result = await createGoal(data)
+    const result = isEdit 
+      ? await updateGoal(initialData.id, data)
+      : await createGoal(data)
 
     if (result?.error) {
       toast.error(result.error)
       setLoading(false)
     } else {
-      toast.success('Goal created successfully!')
+      toast.success(isEdit ? 'Goal updated!' : 'Goal created successfully!')
       setOpen(false)
       setLoading(false)
-      setUom('')
-      setThrustAreaId('')
+      if (!isEdit) {
+        setUom('')
+        setThrustAreaId('')
+      }
     }
   }
 
-  const remainingWeightage = 100 - currentTotalWeightage
+  // Adjust remaining weightage for edit mode (don't count current goal's weightage against itself)
+  const effectiveTotal = isEdit 
+    ? currentTotalWeightage - Number(initialData.weightage)
+    : currentTotalWeightage
+  
+  const remainingWeightage = 100 - effectiveTotal
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        className={cn(
-          "inline-flex items-center justify-center rounded-md text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#FDB813] hover:bg-[#E5A510] text-black",
-          (goalCount >= 8 || currentTotalWeightage >= 100) && "opacity-50 cursor-not-allowed"
-        )}
-        disabled={goalCount >= 8 || currentTotalWeightage >= 100}
-      >
-        <Plus className="mr-2 h-4 w-4" /> Add New Goal
-      </DialogTrigger>
+      <DialogTrigger render={
+        trigger || (
+          <Button
+            className={cn(
+              "bg-[#FDB813] hover:bg-[#E5A510] text-black font-bold",
+              (goalCount >= 8 || currentTotalWeightage >= 100) && "opacity-50 cursor-not-allowed"
+            )}
+            disabled={goalCount >= 8 || currentTotalWeightage >= 100}
+          >
+            <Plus className="mr-2 h-4 w-4" /> Add New Goal
+          </Button>
+        )
+      } />
       <DialogContent className="sm:max-w-[525px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create New Goal</DialogTitle>
+          <DialogTitle>{isEdit ? 'Edit Goal' : 'Create New Goal'}</DialogTitle>
           <DialogDescription>
-            Define your goal for {activeCycle?.name || 'the current cycle'}. 
+            {isEdit ? 'Update your goal details.' : `Define your goal for ${activeCycle?.name || 'the current cycle'}.`}
             Remaining weightage: <span className="font-bold text-black">{remainingWeightage}%</span>
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={onSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
             <Label htmlFor="title">Goal Title</Label>
-            <Input id="title" name="title" placeholder="Enter a clear, actionable title" required />
+            <Input 
+              id="title" 
+              name="title" 
+              defaultValue={initialData?.title}
+              placeholder="Enter a clear, actionable title" 
+              required 
+            />
           </div>
           
           <div className="space-y-2">
@@ -81,6 +109,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
             <Textarea 
               id="description" 
               name="description" 
+              defaultValue={initialData?.description}
               placeholder="Provide more details about your goal" 
               required 
             />
@@ -134,6 +163,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
                 id="weightage" 
                 name="weightage" 
                 type="number" 
+                defaultValue={initialData?.weightage}
                 min="10" 
                 max={remainingWeightage} 
                 placeholder="Min 10%" 
@@ -144,7 +174,13 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
             {uom === 'timeline' ? (
               <div className="space-y-2">
                 <Label htmlFor="target_date">Target Date</Label>
-                <Input id="target_date" name="target_date" type="date" required />
+                <Input 
+                  id="target_date" 
+                  name="target_date" 
+                  type="date" 
+                  defaultValue={initialData?.target_date}
+                  required 
+                />
               </div>
             ) : (
               <div className="space-y-2">
@@ -154,6 +190,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
                   name="target_value" 
                   type="number" 
                   step="0.01" 
+                  defaultValue={initialData?.target_value}
                   placeholder={uom === 'zero_based' ? 'e.g. 0' : 'e.g. 100'} 
                   required 
                 />
@@ -167,7 +204,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
               className="w-full bg-[#FDB813] hover:bg-[#E5A510] text-black font-bold"
               disabled={loading}
             >
-              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Create Goal'}
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : (isEdit ? 'Update Goal' : 'Create Goal')}
             </Button>
           </DialogFooter>
         </form>
