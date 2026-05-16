@@ -10,7 +10,7 @@ export async function getTeamProgress() {
   // 1. Fetch team members
   const { data: team, error } = await supabase
     .from('users')
-    .select('id, full_name, email, role')
+    .select('id, name, email, role')
     .eq('manager_id', user.id)
   
   if (error) throw new Error(error.message)
@@ -88,7 +88,7 @@ export async function getUserProfile(userId) {
   const supabase = await createClient()
   const { data, error } = await supabase
     .from('users')
-    .select('id, full_name, email')
+    .select('id, name, email')
     .eq('id', userId)
     .single()
   

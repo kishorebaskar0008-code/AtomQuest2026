@@ -47,10 +47,10 @@ export default async function TeamPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="h-12 w-12 rounded-full bg-black text-[#FDB813] flex items-center justify-center font-bold text-lg">
-                    {member.full_name.charAt(0)}
+                    {member.name.charAt(0)}
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg group-hover:text-black">{member.full_name}</h3>
+                    <h3 className="font-bold text-lg group-hover:text-black">{member.name}</h3>
                     <p className="text-sm text-gray-500">{member.email}</p>
                   </div>
                 </div>

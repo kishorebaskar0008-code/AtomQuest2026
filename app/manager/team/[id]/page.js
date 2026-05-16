@@ -26,7 +26,7 @@ export default async function EmployeeReviewPage({ params }) {
           </Link>
         </Button>
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-black">{employee.full_name}</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-black">{employee.name}</h2>
           <p className="text-muted-foreground mt-1">Reviewing goals for {employee.email}</p>
         </div>
       </div>
@@ -114,7 +114,7 @@ export default async function EmployeeReviewPage({ params }) {
 
           <ReviewActions 
             employeeId={id} 
-            employeeName={employee.full_name}
+            employeeName={employee.name}
             isPending={isPendingReview}
           />
 
