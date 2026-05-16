@@ -15,6 +15,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [uom, setUom] = useState('')
+  const [thrustAreaId, setThrustAreaId] = useState('')
 
   async function onSubmit(event) {
     event.preventDefault()
@@ -24,13 +25,13 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
     const data = {
       title: formData.get('title'),
       description: formData.get('description'),
-      thrust_area_id: formData.get('thrust_area_id'),
-      uom_type: formData.get('uom_type'),
+      thrust_area_id: thrustAreaId,
+      uom_type: uom,
       weightage: formData.get('weightage'),
       target_value: formData.get('target_value'),
       target_date: formData.get('target_date'),
       cycle_id: activeCycle?.id,
-      manager_id: null // Will be handled by the server based on user profile
+      manager_id: null
     }
 
     const result = await createGoal(data)
@@ -43,6 +44,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
       setOpen(false)
       setLoading(false)
       setUom('')
+      setThrustAreaId('')
     }
   }
 
@@ -77,7 +79,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
             <Textarea 
               id="description" 
               name="description" 
-              placeholder="Provide more details about your goal and how you will measure success" 
+              placeholder="Provide more details about your goal" 
               required 
             />
           </div>
@@ -85,13 +87,15 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Thrust Area</Label>
-              <Select name="thrust_area_id" required>
+              <Select onValueChange={setThrustAreaId} value={thrustAreaId} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select area" />
                 </SelectTrigger>
                 <SelectContent>
                   {thrustAreas.map((area) => (
-                    <SelectItem key={area.id} value={area.id}>{area.name}</SelectItem>
+                    <SelectItem key={area.id} value={area.id}>
+                      {area.name}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -99,7 +103,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
             
             <div className="space-y-2">
               <Label>UoM Type</Label>
-              <Select name="uom_type" required onValueChange={setUom}>
+              <Select onValueChange={setUom} value={uom} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select UoM" />
                 </SelectTrigger>
