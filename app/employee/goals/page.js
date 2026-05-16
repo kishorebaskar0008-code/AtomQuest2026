@@ -87,7 +87,7 @@ export default async function EmployeeGoalsPage() {
                           <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Target</div>
                           <div className="text-lg font-black text-black">
                             {goal.uom_type === 'timeline' 
-                              ? new Date(goal.target_date).toLocaleDateString() 
+                              ? new Date(goal.target_date).toISOString().split('T')[0] 
                               : goal.target_value}
                           </div>
                         </div>

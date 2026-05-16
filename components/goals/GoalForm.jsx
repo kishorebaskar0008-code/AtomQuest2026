@@ -52,13 +52,14 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button 
-          className="bg-[#FDB813] hover:bg-[#E5A510] text-black font-bold"
-          disabled={goalCount >= 8 || currentTotalWeightage >= 100}
-        >
-          <Plus className="mr-2 h-4 w-4" /> Add New Goal
-        </Button>
+      <DialogTrigger
+        className={cn(
+          "inline-flex items-center justify-center rounded-md text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#FDB813] hover:bg-[#E5A510] text-black",
+          (goalCount >= 8 || currentTotalWeightage >= 100) && "opacity-50 cursor-not-allowed"
+        )}
+        disabled={goalCount >= 8 || currentTotalWeightage >= 100}
+      >
+        <Plus className="mr-2 h-4 w-4" /> Add New Goal
       </DialogTrigger>
       <DialogContent className="sm:max-w-[525px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
