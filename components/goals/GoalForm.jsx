@@ -90,7 +90,7 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
               <Select onValueChange={setThrustAreaId} value={thrustAreaId} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select area">
-                    {thrustAreaId && thrustAreas.find(a => a.id === thrustAreaId)?.name}
+                    {thrustAreaId ? thrustAreas.find(a => a.id === thrustAreaId)?.name : undefined}
                   </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
@@ -108,14 +108,11 @@ export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goal
               <Select onValueChange={setUom} value={uom} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select UoM">
-                    {uom && (
-                      <>
-                        {uom === 'numeric_min' && 'Numeric (Min)'}
-                        {uom === 'numeric_max' && 'Numeric (Max)'}
-                        {uom === 'timeline' && 'Timeline (Date)'}
-                        {uom === 'zero_based' && 'Zero-Based (0/1)'}
-                      </>
-                    )}
+                    {uom === 'numeric_min' ? 'Numeric (Min)' : 
+                     uom === 'numeric_max' ? 'Numeric (Max)' : 
+                     uom === 'timeline' ? 'Timeline (Date)' : 
+                     uom === 'zero_based' ? 'Zero-Based (0/1)' : 
+                     undefined}
                   </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
