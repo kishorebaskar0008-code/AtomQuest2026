@@ -20,10 +20,8 @@ export default async function EmployeeReviewPage({ params }) {
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" asChild className="rounded-full">
-          <Link href="/manager/team">
-            <ArrowLeft size={20} />
-          </Link>
+        <Button variant="ghost" size="icon" render={<Link href="/manager/team" />} className="rounded-full">
+          <ArrowLeft size={20} />
         </Button>
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-black">{employee.name}</h2>
