@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 export default async function EmployeeReviewPage({ params }) {
-  const { id } = params
+  const { id } = await params
   const [employee, goals] = await Promise.all([
     getUserProfile(id),
     getEmployeeGoalsForManager(id)
