@@ -30,16 +30,20 @@ A Goal Setting & Tracking Portal for managing employee goals, approvals, and qua
 - Demo users seeded (Admin, Managers, Employees)
 - Role-specific layouts and dashboard shells created
 - **Phase 2: Employee Goal Creation implemented**
-- **Weightage validation and live visual bar integrated**
-- **Active Cycle seeded in DB**
+- **Phase 3: Goal Approval Workflow (Manager & Employee sync)**
+- **Phase 4: Quarterly Performance Check-ins & Manager Review**
+- Weightage validation (100% rule) and live visual tracking
+- Dual-status tracking (Goal Status vs. Quarterly Progress Status)
+- Weighted average scoring system for quarterly performance
 
 ## What Is In Progress
-- Phase 3: Goal Approval Workflow
+- Phase 5: Admin Core (Thrust Area Management, Escalation Rules, Cycle Control)
 
 ## What Is Remaining / Next Steps
-- Set up Supabase schema and triggers
-- Implement Authentication (Phase 1)
-- Seed demo data
+- Implement Admin Cycle Management (Phase 5)
+- Shared Goals & Departmental Alignment (Phase 6)
+- Analytics Dashboard for Admin (Phase 7)
+- Automated Email Notifications & Escalations (Phase 8)
 
 ## Known Bugs or Issues
 - None

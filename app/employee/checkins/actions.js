@@ -18,16 +18,24 @@ export async function getApprovedGoals() {
 }
 
 export async function getCheckIns(quarter) {
+  if (!quarter) return []
+
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) return []
 
   const { data, error } = await supabase
     .from('check_ins')
     .select('*')
     .eq('employee_id', user.id)
     .eq('quarter', quarter)
+    .order('created_at', { ascending: false })
   
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error('Error fetching check-ins:', error)
+    return []
+  }
   return data
 }
 
@@ -35,12 +43,18 @@ export async function submitCheckIn(goalId, checkInData) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
+  if (!user) return { error: 'Not authenticated' }
+
   // 1. Get goal to get manager_id and cycle_id
-  const { data: goal } = await supabase
+  const { data: goal, error: goalError } = await supabase
     .from('goals')
     .select('manager_id, cycle_id')
     .eq('id', goalId)
     .single()
+
+  if (goalError || !goal) {
+    return { error: 'Goal not found or unauthorized' }
+  }
 
   // 2. Upsert check-in
   const { error } = await supabase
@@ -55,13 +69,17 @@ export async function submitCheckIn(goalId, checkInData) {
       actual_date: checkInData.uom_type === 'timeline' ? checkInData.actual_date : null,
       status: checkInData.status,
       notes: checkInData.notes,
-      // progress_score is handled by DB trigger
+      updated_at: new Date().toISOString()
     }, {
       onConflict: 'goal_id, quarter, cycle_id'
     })
 
-  if (error) return { error: error.message }
+  if (error) {
+    console.error('Upsert error:', error)
+    return { error: error.message }
+  }
   
   revalidatePath('/employee/checkins')
+  revalidatePath('/manager/team')
   return { success: true }
 }

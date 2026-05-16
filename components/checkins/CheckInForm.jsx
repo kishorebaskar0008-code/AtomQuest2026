@@ -11,17 +11,32 @@ import { calculateProgressScore } from '@/lib/utils/scoreCalculator'
 import { submitCheckIn } from '@/app/employee/checkins/actions'
 import { toast } from 'sonner'
 import { Loader2, CheckCircle2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export function CheckInForm({ goal, existingCheckIn, quarter, isOpen }) {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
-    actual_value: existingCheckIn?.actual_value || '',
-    actual_date: existingCheckIn?.actual_date || '',
-    status: existingCheckIn?.status || 'not_started',
-    notes: existingCheckIn?.notes || ''
+    actual_value: existingCheckIn?.actual_value ?? '',
+    actual_date: existingCheckIn?.actual_date ?? '',
+    status: existingCheckIn?.status ?? 'not_started',
+    notes: existingCheckIn?.notes ?? ''
   })
 
   const [previewScore, setPreviewScore] = useState(existingCheckIn?.progress_score || 0)
+
+  useEffect(() => {
+    console.log(`[CheckInForm] existingCheckIn for ${goal.title}:`, existingCheckIn)
+    if (existingCheckIn) {
+      setFormData({
+        actual_value: existingCheckIn.actual_value ?? '',
+        actual_date: existingCheckIn.actual_date ?? '',
+        status: existingCheckIn.status ?? 'not_started',
+        notes: existingCheckIn.notes ?? ''
+      })
+      setPreviewScore(existingCheckIn.progress_score || 0)
+    }
+  }, [existingCheckIn, goal.title])
 
   useEffect(() => {
     const target = goal.uom_type === 'timeline' ? goal.target_date : goal.target_value
@@ -31,17 +46,26 @@ export function CheckInForm({ goal, existingCheckIn, quarter, isOpen }) {
   }, [formData.actual_value, formData.actual_date, goal])
 
   async function handleSave() {
+    console.log(`[CheckInForm] Saving progress for ${goal.title}...`, formData)
     setLoading(true)
-    const result = await submitCheckIn(goal.id, {
+    
+    // Ensure numeric value is a number, not a string
+    const processedData = {
       ...formData,
+      actual_value: formData.actual_value === '' ? null : Number(formData.actual_value),
       quarter,
       uom_type: goal.uom_type
-    })
+    }
+
+    const result = await submitCheckIn(goal.id, processedData)
 
     if (result?.error) {
+      console.error('[CheckInForm] Save failed:', result.error)
       toast.error(result.error)
     } else {
+      console.log('[CheckInForm] Save successful!')
       toast.success('Progress saved!')
+      router.refresh()
     }
     setLoading(false)
   }
@@ -124,12 +148,6 @@ export function CheckInForm({ goal, existingCheckIn, quarter, isOpen }) {
           </div>
         )}
 
-        {existingCheckIn?.manager_checked_in && (
-          <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg">
-            <div className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-1">Manager Review</div>
-            <p className="text-xs text-blue-800 italic">"{existingCheckIn.manager_comment}"</p>
-          </div>
-        )}
       </CardContent>
     </Card>
   )

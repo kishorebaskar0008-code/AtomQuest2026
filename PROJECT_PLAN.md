@@ -22,10 +22,10 @@ This document outlines the official 10-phase build order and core business rules
 - [x] Manager Dashboard with team overview.
 - [x] Team Goals review list.
 - [x] Individual Goal Review page (Approve/Return/Edit).
-- [ ] **Pending**: Audit Log implementation for manager edits.
+- [x] **Verified**: Audit Log implementation for manager edits.
 
 ### ✅ Phase 4 — Quarterly Check-ins
-- [x] Score Calculator Utility (Numeric Min/Max, Timeline, Zero-Based).
+- [x] Score Calculator Utility (Fixed date handling for Timeline goals).
 - [x] Employee Check-in page (Actual achievement inputs).
 - [x] Manager Check-in Review page (Planned vs. Actual table).
 - [x] Window Enforcement (Logic to open/close Q1-Q4 windows).

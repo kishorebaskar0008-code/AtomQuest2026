@@ -15,23 +15,51 @@ export async function getTeamProgress() {
   
   if (error) throw new Error(error.message)
 
-  // 2. Fetch goal summaries for each member
+  // 2. Get current quarter context
+  const { data: activeCycle } = await supabase
+    .from('cycles')
+    .select('*')
+    .eq('is_active', true)
+    .single()
+  
+  const { getCurrentQuarterInfo } = require('@/lib/utils/dateHelpers')
+  const quarterInfo = getCurrentQuarterInfo(activeCycle)
+
+  // 3. Fetch goal and check-in summaries for each member
   const teamWithStats = await Promise.all(team.map(async (member) => {
     const { data: goals } = await supabase
       .from('goals')
-      .select('status, weightage')
+      .select('id, status, weightage')
       .eq('employee_id', member.id)
     
+    const { data: checkIns } = await supabase
+      .from('check_ins')
+      .select('manager_checked_in')
+      .eq('employee_id', member.id)
+      .eq('quarter', quarterInfo?.name)
+    
     const totalWeightage = goals?.reduce((sum, g) => sum + Number(g.weightage), 0) || 0
-    const status = goals?.length === 0 ? 'Not Started' : 
-                   goals.every(g => g.status === 'approved') ? 'Approved' :
-                   goals.some(g => g.status === 'submitted') ? 'Pending Review' : 'Draft'
+    const goalStatus = goals?.length === 0 ? 'Not Started' : 
+                       goals.every(g => g.status === 'approved') ? 'Approved' :
+                       goals.some(g => g.status === 'submitted') ? 'Pending Review' : 'Draft'
+
+    // Q1 Progress Status
+    const totalCheckIns = checkIns?.length || 0
+    const reviewedCheckIns = checkIns?.filter(c => c.manager_checked_in).length || 0
+
+    let q1Status = 'Not Started'
+    if (totalCheckIns > 0) {
+      q1Status = reviewedCheckIns === totalCheckIns ? 'Reviewed' : 'Pending Review'
+    }
 
     return {
       ...member,
       goalCount: goals?.length || 0,
+      approvedCount: goals?.filter(g => g.status === 'approved').length || 0,
       totalWeightage,
-      status
+      goalStatus,
+      q1Status,
+      q1Name: quarterInfo?.name || 'Q1'
     }
   }))
 
@@ -96,16 +124,54 @@ export async function getUserProfile(userId) {
   return data
 }
 
-export async function reviewGoal(goalId, status, comment) {
+export async function reviewGoal(goalId, status, comment, edits = {}) {
+  const supabase = await createClient()
+  
+  const updateData = { 
+    status,
+    comment 
+  }
+
+  // If there are edits (manager changed target or weightage)
+  if (edits.target_value !== undefined) updateData.target_value = edits.target_value
+  if (edits.target_date !== undefined) updateData.target_date = edits.target_date
+  if (edits.weightage !== undefined) updateData.weightage = Number(edits.weightage)
+
+  const { error } = await supabase
+    .from('goals')
+    .update(updateData)
+    .eq('id', goalId)
+
+  if (error) return { error: error.message }
+  
+  revalidatePath('/manager/team')
+  return { success: true }
+}
+
+export async function getEmployeeCheckInsForManager(employeeId, quarter) {
+  const supabase = await createClient()
+  
+  const { data, error } = await supabase
+    .from('check_ins')
+    .select('*')
+    .eq('employee_id', employeeId)
+    .eq('quarter', quarter)
+  
+  if (error) throw new Error(error.message)
+  return data
+}
+
+export async function reviewCheckIn(checkInId, comment) {
   const supabase = await createClient()
   
   const { error } = await supabase
-    .from('goals')
+    .from('check_ins')
     .update({ 
-      status,
-      comment 
+      manager_comment: comment,
+      manager_checked_in: true,
+      manager_reviewed_at: new Date().toISOString()
     })
-    .eq('id', goalId)
+    .eq('id', checkInId)
 
   if (error) return { error: error.message }
   

@@ -1,29 +1,48 @@
-import { getEmployeeGoalsForManager, getUserProfile } from '../actions'
+import { getEmployeeGoalsForManager, getUserProfile, getEmployeeCheckInsForManager } from '../actions'
+import { getActiveCycle } from '@/app/employee/goals/actions'
+import { getCurrentQuarterInfo } from '@/lib/utils/dateHelpers'
 import { ReviewActions } from '@/components/goals/ReviewActions'
 import { IndividualReview } from '@/components/goals/IndividualReview'
+import { CheckInReview } from '@/components/goals/CheckInReview'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ArrowLeft, Target, Calendar, BarChart3 } from 'lucide-react'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { ArrowLeft, Target, Calendar, BarChart3, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 export default async function EmployeeReviewPage({ params }) {
   const { id } = await params
-  const [employee, goals] = await Promise.all([
+  const [employee, goals, activeCycle] = await Promise.all([
     getUserProfile(id),
-    getEmployeeGoalsForManager(id)
+    getEmployeeGoalsForManager(id),
+    getActiveCycle()
   ])
+
+  const quarterInfo = getCurrentQuarterInfo(activeCycle)
+  const checkIns = await getEmployeeCheckInsForManager(id, quarterInfo?.name)
 
   const totalWeightage = goals.reduce((sum, g) => sum + Number(g.weightage), 0)
   const isPendingReview = goals.length > 0 && goals.some(g => g.status === 'submitted')
 
+  // Calculate Quarterly Score
+  const totalQuarterlyScore = goals.length > 0 
+    ? (goals.reduce((sum, goal) => {
+        const checkIn = checkIns.find(c => c.goal_id === goal.id)
+        const score = checkIn ? Math.min(Number(checkIn.progress_score), 100) : 0
+        return sum + score
+      }, 0) / goals.length).toFixed(1)
+    : 0
+
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" render={<Link href="/manager/team" />} nativeButton={false} className="rounded-full">
+        <Link 
+          href="/manager/team" 
+          className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "rounded-full")}
+        >
           <ArrowLeft size={20} />
-        </Button>
+        </Link>
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-black">{employee.name}</h2>
           <p className="text-muted-foreground mt-1">Reviewing goals for {employee.email}</p>
@@ -51,14 +70,39 @@ export default async function EmployeeReviewPage({ params }) {
                   </div>
                   <div className="flex items-start justify-between">
                     <CardTitle className="text-xl font-bold">{goal.title}</CardTitle>
-                    <IndividualReview 
-                      goalId={goal.id} 
-                      employeeName={employee.name} 
-                      currentStatus={goal.status} 
-                    />
+                    <div className="flex items-center gap-3 shrink-0">
+                      {checkIns.find(c => c.goal_id === goal.id) && (
+                        <CheckInReview 
+                          checkIn={checkIns.find(c => c.goal_id === goal.id)} 
+                          goalTitle={goal.title}
+                        />
+                      )}
+                      <IndividualReview 
+                        goal={goal} 
+                        employeeName={employee.name} 
+                      />
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {checkIns.find(c => c.goal_id === goal.id) && (
+                    <div className="mb-4 p-3 bg-blue-50/50 border border-blue-100 rounded-lg flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-black text-xs">
+                          {Math.min(checkIns.find(c => c.goal_id === goal.id).progress_score, 100)}%
+                        </div>
+                        <div>
+                          <div className="text-[10px] text-blue-600 font-bold uppercase tracking-widest">Q1 Progress</div>
+                          <div className="text-xs font-medium text-blue-900 truncate max-w-[200px]">
+                            {checkIns.find(c => c.goal_id === goal.id).notes || 'No notes'}
+                          </div>
+                        </div>
+                      </div>
+                      {checkIns.find(c => c.goal_id === goal.id).manager_checked_in && (
+                        <Badge className="bg-green-100 text-green-700 hover:bg-green-100 text-[9px]">Reviewed</Badge>
+                      )}
+                    </div>
+                  )}
                   <p className="text-sm text-gray-600 leading-relaxed">
                     {goal.description}
                   </p>
@@ -92,6 +136,25 @@ export default async function EmployeeReviewPage({ params }) {
         </div>
 
         <div className="space-y-6">
+          <Card className="bg-black text-white overflow-hidden border-none shadow-lg">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <TrendingUp className="text-[#FDB813]" size={24} />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Quarterly Score</span>
+              </div>
+              <div className="text-5xl font-black mb-1">{totalQuarterlyScore}%</div>
+              <p className="text-xs text-gray-400 font-medium">
+                Average progress for {quarterInfo?.name}.
+              </p>
+              <div className="mt-6 w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                <div 
+                  className="bg-[#FDB813] h-full transition-all duration-500" 
+                  style={{ width: `${totalQuarterlyScore}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="bg-white p-6 rounded-xl border shadow-sm">
             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Goal Summary</h3>
             <div className="space-y-4">

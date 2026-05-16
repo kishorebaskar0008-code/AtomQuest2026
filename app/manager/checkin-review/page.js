@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import Link from 'next/link'
 import { ChevronRight, Calendar, CheckCircle2, Clock } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export default async function ManagerCheckinReviewPage() {
   const [team, activeCycle] = await Promise.all([
@@ -55,22 +56,27 @@ export default async function ManagerCheckinReviewPage() {
                 <div className="flex flex-wrap items-center gap-8">
                   <div>
                     <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Goals</div>
-                    <div className="text-sm font-bold text-black">{member.goalCount} Approved</div>
+                    <div className="text-sm font-bold text-black">{member.approvedCount} / {member.goalCount} Approved</div>
                   </div>
                   
                   <div>
-                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Q1 Status</div>
-                    <Badge variant="outline" className="bg-gray-50 text-gray-600 border-gray-200">
-                      Pending Review
+                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{member.q1Name} Status</div>
+                    <Badge className={cn(
+                      "text-[10px] font-bold uppercase tracking-wider px-2 py-0.5",
+                      member.q1Status === 'Reviewed' ? "bg-green-600 text-white border-none" :
+                      member.q1Status === 'Pending Review' ? "bg-blue-600 text-white animate-pulse border-none" :
+                      "bg-gray-100 text-gray-400 border-none"
+                    )}>
+                      {member.q1Status}
                     </Badge>
                   </div>
 
-                  <Button 
-                    render={<Link href={`/manager/checkin-review/${member.id}`} />}
-                    className="bg-black hover:bg-gray-800 text-white font-bold"
+                  <Link 
+                    href={`/manager/checkin-review/${member.id}`}
+                    className="inline-flex items-center justify-center rounded-md text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black text-white hover:bg-gray-800 h-10 px-4 py-2"
                   >
                     Review Progress <ChevronRight size={16} className="ml-1" />
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </CardContent>

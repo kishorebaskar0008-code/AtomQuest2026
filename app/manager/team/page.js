@@ -11,9 +11,9 @@ export default async function TeamPage() {
 
   const stats = {
     total: team.length,
-    approved: team.filter(m => m.status === 'Approved').length,
-    pending: team.filter(m => m.status === 'Pending Review').length,
-    draft: team.filter(m => m.status === 'Draft' || m.status === 'Not Started').length
+    approved: team.filter(m => m.goalStatus === 'Approved').length,
+    pending: team.filter(m => m.goalStatus === 'Pending Review' || m.q1Status === 'Pending Review').length,
+    draft: team.filter(m => m.goalStatus === 'Draft' || m.goalStatus === 'Not Started').length
   }
 
   return (
@@ -21,21 +21,21 @@ export default async function TeamPage() {
       <div>
         <h2 className="text-3xl font-bold tracking-tight text-black">My Team</h2>
         <p className="text-muted-foreground mt-1">
-          Monitor goal setting progress and review submissions from your direct reports.
+          Monitor goal setting progress and review quarterly submissions from your direct reports.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard title="Total Team" value={stats.total} icon={<Users className="text-blue-600" />} />
-        <StatCard title="Approved" value={stats.approved} icon={<CheckCircle2 className="text-green-600" />} />
-        <StatCard title="Pending Review" value={stats.pending} icon={<Clock className="text-yellow-600" />} />
+        <StatCard title="Goals Approved" value={stats.approved} icon={<CheckCircle2 className="text-green-600" />} />
+        <StatCard title="Action Required" value={stats.pending} icon={<Clock className="text-yellow-600" />} />
         <StatCard title="In Progress" value={stats.draft} icon={<AlertCircle className="text-gray-400" />} />
       </div>
 
       <Card className="border-none shadow-sm overflow-hidden">
         <CardHeader className="bg-white border-b">
-          <CardTitle>Team Goal Status</CardTitle>
-          <CardDescription>Click on an employee to review their goals.</CardDescription>
+          <CardTitle>Team Status Overview</CardTitle>
+          <CardDescription>Click on an employee to review their goals and quarterly progress.</CardDescription>
         </CardHeader>
         <CardContent className="p-0">
           <div className="divide-y">
@@ -47,7 +47,7 @@ export default async function TeamPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="h-12 w-12 rounded-full bg-black text-[#FDB813] flex items-center justify-center font-bold text-lg">
-                    {member.name.charAt(0)}
+                    {member.name.charAt(0)}{member.name.split(' ').length > 1 ? member.name.split(' ')[1].charAt(0) : ''}
                   </div>
                   <div>
                     <h3 className="font-bold text-lg group-hover:text-black">{member.name}</h3>
@@ -55,32 +55,33 @@ export default async function TeamPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-12">
-                  <div className="hidden md:block text-right">
-                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Weightage</div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div 
-                          className={cn(
-                            "h-full rounded-full",
-                            member.totalWeightage === 100 ? "bg-green-500" : "bg-[#FDB813]"
-                          )}
-                          style={{ width: `${member.totalWeightage}%` }}
-                        />
-                      </div>
-                      <span className="text-sm font-bold tabular-nums">{member.totalWeightage}%</span>
-                    </div>
+                <div className="flex items-center gap-8 lg:gap-16">
+                  <div className="hidden lg:block w-32 text-right">
+                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Goals</div>
+                    <div className="text-sm font-bold text-black">{member.approvedCount} / {member.goalCount} Approved</div>
                   </div>
 
-                  <div className="w-32 text-right">
-                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Status</div>
+                  <div className="w-28 text-right">
+                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Goal Status</div>
+                    <Badge variant="outline" className={cn(
+                      "text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border-none",
+                      member.goalStatus === 'Approved' ? "bg-green-100 text-green-700" :
+                      member.goalStatus === 'Pending Review' ? "bg-yellow-100 text-yellow-700" :
+                      member.goalStatus === 'Draft' ? "bg-gray-100 text-gray-600" : "bg-red-50 text-red-600"
+                    )}>
+                      {member.goalStatus}
+                    </Badge>
+                  </div>
+
+                  <div className="w-28 text-right">
+                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{member.q1Name} Status</div>
                     <Badge className={cn(
                       "text-[10px] font-bold uppercase tracking-wider px-2 py-0.5",
-                      member.status === 'Approved' ? "bg-green-100 text-green-700" :
-                      member.status === 'Pending Review' ? "bg-yellow-100 text-yellow-700 animate-pulse" :
-                      member.status === 'Draft' ? "bg-gray-100 text-gray-600" : "bg-red-50 text-red-600"
+                      member.q1Status === 'Reviewed' ? "bg-green-600 text-white" :
+                      member.q1Status === 'Pending Review' ? "bg-blue-600 text-white animate-pulse" :
+                      "bg-gray-100 text-gray-400"
                     )}>
-                      {member.status}
+                      {member.q1Status}
                     </Badge>
                   </div>
                   

@@ -186,6 +186,47 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trg_goals_updated_at BEFORE UPDATE ON public.goals FOR EACH ROW EXECUTE FUNCTION handle_updated_at();
 CREATE TRIGGER trg_checkins_updated_at BEFORE UPDATE ON public.check_ins FOR EACH ROW EXECUTE FUNCTION handle_updated_at();
 
+-- Function to handle audit logging for goals
+CREATE OR REPLACE FUNCTION handle_audit_log()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Log if the goal was already approved/locked, or if it's an edit by a manager during approval
+    IF (OLD.status IN ('approved', 'locked')) OR (NEW.status IN ('approved', 'locked') AND OLD.status = 'submitted') THEN
+        -- Only insert if there's a meaningful change in target or weightage or status
+        IF (OLD.target_value IS DISTINCT FROM NEW.target_value) OR 
+           (OLD.target_date IS DISTINCT FROM NEW.target_date) OR 
+           (OLD.weightage IS DISTINCT FROM NEW.weightage) OR
+           (OLD.status IS DISTINCT FROM NEW.status) THEN
+            
+            INSERT INTO public.audit_logs (
+                goal_id,
+                changed_by,
+                change_type,
+                old_value,
+                new_value,
+                reason
+            ) VALUES (
+                NEW.id,
+                auth.uid(),
+                CASE 
+                    WHEN OLD.status = 'submitted' AND NEW.status = 'approved' AND (OLD.target_value IS DISTINCT FROM NEW.target_value OR OLD.weightage IS DISTINCT FROM NEW.weightage) THEN 'manager_edit_on_approval'
+                    WHEN OLD.status = 'locked' AND NEW.status = 'draft' THEN 'goal_unlocked'
+                    ELSE 'post_lock_update'
+                END,
+                to_jsonb(OLD),
+                to_jsonb(NEW),
+                NEW.manager_comment
+            );
+        END IF;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_audit_goals
+AFTER UPDATE ON public.goals
+FOR EACH ROW EXECUTE FUNCTION handle_audit_log();
+
 -- 4. RLS POLICIES (Basic)
 ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.goals ENABLE ROW LEVEL SECURITY;
@@ -200,6 +241,14 @@ CREATE POLICY "Users can see themselves and team" ON public.users FOR SELECT USI
 CREATE POLICY "Goals visibility" ON public.goals FOR SELECT USING (
     employee_id = auth.uid() OR manager_id = auth.uid() OR (SELECT role FROM public.users WHERE id = auth.uid()) = 'admin'
 );
+
+-- Cycles: Everyone can read active cycle
+ALTER TABLE public.cycles ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Everyone can read active cycle" ON public.cycles FOR SELECT USING (true);
+
+-- Thrust Areas: Everyone can read active thrust areas
+ALTER TABLE public.thrust_areas ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Everyone can read active thrust areas" ON public.thrust_areas FOR SELECT USING (is_active = true);
 
 -- 5. INITIAL SEED DATA
 INSERT INTO public.thrust_areas (name) VALUES 

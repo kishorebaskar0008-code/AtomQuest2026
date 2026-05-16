@@ -1,9 +1,11 @@
+export const dynamic = 'force-dynamic'
+
 import { getApprovedGoals, getCheckIns } from './actions'
 import { getActiveCycle } from '../goals/actions'
 import { getCurrentQuarterInfo } from '@/lib/utils/dateHelpers'
 import { CheckInForm } from '@/components/checkins/CheckInForm'
 import { Card, CardContent } from '@/components/ui/card'
-import { AlertCircle, Calendar, Target, TrendingUp } from 'lucide-react'
+import { AlertCircle, Calendar, Target, TrendingUp, MessageSquareText } from 'lucide-react'
 
 export default async function EmployeeCheckinsPage() {
   const [goals, activeCycle] = await Promise.all([
@@ -14,8 +16,15 @@ export default async function EmployeeCheckinsPage() {
   const quarterInfo = getCurrentQuarterInfo(activeCycle)
   const existingCheckIns = await getCheckIns(quarterInfo?.name)
 
-  const totalScore = existingCheckIns.length > 0 
-    ? (existingCheckIns.reduce((sum, c) => sum + Number(c.progress_score), 0) / goals.length).toFixed(1)
+  console.log(`[Server] Found ${goals.length} goals and ${existingCheckIns.length} check-ins for ${quarterInfo?.name}`)
+
+  const totalScore = goals.length > 0 
+    ? goals.reduce((sum, goal) => {
+        const checkIn = existingCheckIns.find(c => c.goal_id === goal.id)
+        const score = checkIn ? Math.min(Number(checkIn.progress_score), 100) : 0
+        const weightage = Number(goal.weightage) || 0
+        return sum + (score * (weightage / 100))
+      }, 0).toFixed(1)
     : 0
 
   return (
@@ -64,6 +73,27 @@ export default async function EmployeeCheckinsPage() {
               />
             ))
           )}
+
+          {existingCheckIns.some(c => c.manager_checked_in) && (
+            <Card className="border-none shadow-sm bg-blue-50/50 border border-blue-100 overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-blue-600 p-2 rounded-lg">
+                    <MessageSquareText className="text-white" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-blue-900">Manager's Feedback</h3>
+                    <p className="text-xs text-blue-600 font-bold uppercase tracking-widest">Quarterly Performance Review</p>
+                  </div>
+                </div>
+                <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
+                  <p className="text-gray-700 leading-relaxed italic">
+                    "{existingCheckIns.find(c => c.manager_checked_in)?.manager_comment}"
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
 
         <div className="space-y-6">
@@ -88,25 +118,22 @@ export default async function EmployeeCheckinsPage() {
 
           <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 space-y-3">
             <div className="flex items-center gap-2 text-blue-800 font-bold text-sm">
-              <Calendar size={16} /> Schedule
+              <Calendar size={16} /> Check-in Schedule
             </div>
             <div className="text-[10px] text-blue-700 space-y-3 font-medium uppercase tracking-wider">
-              <div>
-                <div className="opacity-50">Q1 Check-in</div>
-                <div>July 1 - July 31</div>
-              </div>
-              <div>
-                <div className="opacity-50">Q2 Check-in</div>
-                <div>Oct 1 - Oct 31</div>
-              </div>
-              <div>
-                <div className="opacity-50">Q3 Check-in</div>
-                <div>Jan 1 - Jan 31</div>
-              </div>
-              <div>
-                <div className="opacity-50">Q4 / Annual</div>
-                <div>Mar 1 - Mar 31</div>
-              </div>
+              {['Q1', 'Q2', 'Q3', 'Q4'].map((q) => {
+                const start = activeCycle?.[`${q.toLowerCase()}_start`];
+                const end = activeCycle?.[`${q.toLowerCase()}_end`];
+                return (
+                  <div key={q} className={quarterInfo?.name === q ? 'bg-blue-100/50 p-2 rounded-md -mx-2' : ''}>
+                    <div className="opacity-50">{q} Check-in {quarterInfo?.name === q && ' (Current)'}</div>
+                    <div>
+                      {start ? new Date(start).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'TBD'} - 
+                      {end ? new Date(end).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'TBD'}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
