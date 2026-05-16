@@ -22,16 +22,19 @@ A Goal Setting & Tracking Portal for managing employee goals, approvals, and qua
 - README and Context documentation
 - Core dependencies installed (Supabase, Recharts, SheetJS, shadcn/ui)
 - Theme colors configured (Black & Yellow)
-- Basic shadcn/ui components added (Button, Input, Card, Label, Sonner)
+- Basic shadcn/ui components added (Button, Input, Card, Label, Sonner, etc.)
 - Supabase credentials configured in .env.local
 - Supabase Database Schema applied (9 tables, triggers, enums)
 - Authentication system with role-based redirection
 - Middleware for session management and route protection
 - Demo users seeded (Admin, Managers, Employees)
 - Role-specific layouts and dashboard shells created
+- **Phase 2: Employee Goal Creation implemented**
+- **Weightage validation and live visual bar integrated**
+- **Active Cycle seeded in DB**
 
 ## What Is In Progress
-- Phase 2: Employee Goal Creation
+- Phase 3: Goal Approval Workflow
 
 ## What Is Remaining / Next Steps
 - Set up Supabase schema and triggers

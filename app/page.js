@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createAdminClient } from '@/lib/supabase/server'
 
 export default async function Home() {
   const supabase = await createClient()
@@ -10,8 +10,9 @@ export default async function Home() {
     redirect('/login')
   }
 
-  // Fetch role and redirect
-  const { data: userData } = await supabase
+  // Fetch role using admin client for initial redirect
+  const adminClient = await createAdminClient()
+  const { data: userData } = await adminClient
     .from('users')
     .select('role')
     .eq('id', user.id)
