@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Plus, Loader2 } from 'lucide-react'
 import { createGoal } from '@/app/employee/goals/actions'
 import { toast } from 'sonner'
+import { cn } from '@/lib/utils'
 
 export function GoalForm({ thrustAreas, activeCycle, currentTotalWeightage, goalCount }) {
   const [open, setOpen] = useState(false)
