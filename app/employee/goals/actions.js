@@ -66,12 +66,18 @@ export async function createGoal(goalData) {
     return { error: 'Minimum weightage per goal is 10%.' }
   }
 
+  const { data: profile } = await supabase
+    .from('users')
+    .select('manager_id')
+    .eq('id', user.id)
+    .single()
+
   // 2. Insert Goal
   const { error: insertError } = await supabase
     .from('goals')
     .insert({
       employee_id: user.id,
-      manager_id: goalData.manager_id,
+      manager_id: profile?.manager_id,
       thrust_area_id: goalData.thrust_area_id,
       cycle_id: goalData.cycle_id,
       title: goalData.title,
@@ -96,6 +102,34 @@ export async function deleteGoal(goalId) {
     .delete()
     .eq('id', goalId)
     .eq('status', 'draft') // Only delete drafts
+
+  if (error) return { error: error.message }
+  
+  revalidatePath('/employee/goals')
+  return { success: true }
+}
+
+export async function submitGoals() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  // 1. Check if total is 100%
+  const { data: goals } = await supabase
+    .from('goals')
+    .select('weightage')
+    .eq('employee_id', user.id)
+  
+  const totalWeightage = goals.reduce((sum, g) => sum + Number(g.weightage), 0)
+  if (totalWeightage !== 100) {
+    return { error: 'Total weightage must be exactly 100% before submitting.' }
+  }
+
+  // 2. Update status
+  const { error } = await supabase
+    .from('goals')
+    .update({ status: 'submitted' })
+    .eq('employee_id', user.id)
+    .eq('status', 'draft')
 
   if (error) return { error: error.message }
   

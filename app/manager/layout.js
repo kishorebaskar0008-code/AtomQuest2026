@@ -23,7 +23,7 @@ export default async function ManagerLayout({ children }) {
 
   const navItems = [
     { label: 'Dashboard', href: '/manager/dashboard', icon: 'dashboard' },
-    { label: 'Team Goals', href: '/manager/team-goals', icon: 'team' },
+    { label: 'Team Goals', href: '/manager/team', icon: 'team' },
     { label: 'Check-in Review', href: '/manager/checkin-review', icon: 'checkins' },
     { label: 'Shared Goals', href: '/manager/shared-goals', icon: 'shared' },
   ]
