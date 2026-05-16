@@ -95,3 +95,20 @@ export async function getUserProfile(userId) {
   if (error) throw new Error(error.message)
   return data
 }
+
+export async function reviewGoal(goalId, status, comment) {
+  const supabase = await createClient()
+  
+  const { error } = await supabase
+    .from('goals')
+    .update({ 
+      status,
+      comments: comment 
+    })
+    .eq('id', goalId)
+
+  if (error) return { error: error.message }
+  
+  revalidatePath('/manager/team')
+  return { success: true }
+}

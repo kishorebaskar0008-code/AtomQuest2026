@@ -1,5 +1,6 @@
 import { getEmployeeGoalsForManager, getUserProfile } from '../actions'
 import { ReviewActions } from '@/components/goals/ReviewActions'
+import { IndividualReview } from '@/components/goals/IndividualReview'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -48,7 +49,14 @@ export default async function EmployeeReviewPage({ params }) {
                       {goal.status}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold">{goal.title}</CardTitle>
+                  <div className="flex items-start justify-between">
+                    <CardTitle className="text-xl font-bold">{goal.title}</CardTitle>
+                    <IndividualReview 
+                      goalId={goal.id} 
+                      employeeName={employee.name} 
+                      currentStatus={goal.status} 
+                    />
+                  </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-sm text-gray-600 leading-relaxed">
