@@ -21,7 +21,7 @@ export default async function EmployeeReviewPage({ params }) {
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" render={<Link href="/manager/team" />} className="rounded-full">
+        <Button variant="ghost" size="icon" render={<Link href="/manager/team" />} nativeButton={false} className="rounded-full">
           <ArrowLeft size={20} />
         </Button>
         <div>
